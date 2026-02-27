@@ -69,28 +69,6 @@ export function Hero() {
           transition: "opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s",
         }}
       >
-        {/* Service category pills */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {["Advisory", "Governance", "Operations", "Brand", "Risk"].map((tag) => (
-            <span
-              key={tag}
-              style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: "clamp(0.5rem, 1vw, 0.62rem)",
-                fontWeight: 600,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase" as const,
-                color: "#D4AF37",
-                border: "1px solid rgba(212,175,55,0.5)",
-                padding: "0.2rem 0.6rem",
-                borderRadius: "2px",
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
         {/* Two-column: headline left, CTAs right */}
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div style={{ maxWidth: "clamp(260px, 45vw, 520px)" }}>
@@ -209,6 +187,28 @@ export function Hero() {
               Begin Engagement
             </button>
           </div>
+        </div>
+
+        {/* Service category pills — below CTAs */}
+        <div className="flex flex-wrap gap-2 mt-5">
+          {["Advisory", "Governance", "Operations", "Brand", "Risk"].map((tag) => (
+            <span
+              key={tag}
+              style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: "clamp(0.5rem, 1vw, 0.62rem)",
+                fontWeight: 600,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase" as const,
+                color: "#D4AF37",
+                border: "1px solid rgba(212,175,55,0.5)",
+                padding: "0.2rem 0.6rem",
+                borderRadius: "2px",
+              }}
+            >
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
     </section>
