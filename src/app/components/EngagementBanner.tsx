@@ -2,7 +2,6 @@ import { useNavigate } from "react-router";
 
 export function EngagementBanner() {
   const navigate = useNavigate();
-  const scrollTo = () => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   return (
     <section className="relative bg-[#D4AF37] overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse" style={{ animationDuration: "3s" }} />
@@ -12,7 +11,7 @@ export function EngagementBanner() {
           <p className="text-[#0A0A0A]/60 mt-1 text-sm" style={{ fontFamily: "'Barlow', sans-serif" }}>Let's architect something that lasts.</p>
         </div>
         <div className="flex flex-wrap gap-4">
-          <button onClick={scrollTo}
+          <button onClick={() => navigate("/contact")}
             className="px-8 py-3.5 bg-[#0A0A0A] text-white hover:bg-[#1a1a1a] transition-colors"
             style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.04em" }}>
             Begin Engagement →

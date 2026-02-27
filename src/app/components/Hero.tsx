@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const heroImg = "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/image.jpeg";
 
@@ -11,8 +12,7 @@ export function Hero() {
     return () => clearTimeout(t);
   }, []);
 
-  const scrollTo = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const navigate = useNavigate();
 
   return (
     <section
@@ -71,7 +71,7 @@ export function Hero() {
       >
         {/* Two-column on desktop, stacked & centered on mobile */}
         <div className="flex flex-col md:flex-row md:flex-wrap md:items-end md:justify-between gap-4 items-center md:items-end text-center md:text-left">
-          <div style={{ maxWidth: "clamp(260px, 45vw, 520px)" }}>
+          <div className="mx-auto md:mx-0" style={{ maxWidth: "520px" }}>
             {/* Eyebrow — company name */}
             <p
               style={{
@@ -134,6 +134,7 @@ export function Hero() {
                 lineHeight: 1.75,
                 color: "rgba(255,255,255,0.45)",
                 maxWidth: "42ch",
+                margin: "0 auto",
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(14px)",
                 transition: "opacity 0.6s ease 0.95s, transform 0.6s ease 0.95s",
@@ -154,7 +155,7 @@ export function Hero() {
             }}
           >
             <button
-              onClick={() => scrollTo("services")}
+              onClick={() => navigate("/services")}
               style={{
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: "clamp(0.7rem, 1vw, 0.82rem)",
@@ -183,7 +184,7 @@ export function Hero() {
             </button>
 
             <button
-              onClick={() => scrollTo("contact")}
+              onClick={() => navigate("/contact")}
               style={{
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: "clamp(0.7rem, 1vw, 0.82rem)",

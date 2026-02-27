@@ -4,6 +4,11 @@ import { Footer } from "./components/Footer";
 
 // Pages
 import HomePage from "./pages/HomePage";
+import ServicesPage from "./pages/ServicesPage";
+import ArchitecturePage from "./pages/ArchitecturePage";
+import AboutPage from "./pages/AboutPage";
+import WorkPage from "./pages/WorkPage";
+import ContactPage from "./pages/ContactPage";
 import BrandToolPage from "./pages/BrandToolPage";
 import PartnersPage from "./pages/PartnersPage";
 import CornbreadPage from "./pages/CornbreadPage";
@@ -18,6 +23,11 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/architecture" element={<ArchitecturePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/work" element={<WorkPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/brand-tool" element={<BrandToolPage />} />
         <Route path="/partners" element={<PartnersPage />} />
         <Route path="/partners/cornbread" element={<CornbreadPage />} />
