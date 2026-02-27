@@ -4,6 +4,7 @@ const heroImg = "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/image.jpeg"
 
 export function Hero() {
   const [visible, setVisible] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 100);
@@ -23,12 +24,13 @@ export function Hero() {
         isolation: "isolate",
       }}
     >
-      {/* ── LAYER 1: Subject photo — full width, centered ── */}
+      {/* ── LAYER 1: Subject photo — full width, centered, with subtle zoom settle ── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          opacity: visible ? 1 : 0,
-          transition: "opacity 0.9s ease 0.3s",
+          opacity: visible && imgLoaded ? 1 : 0,
+          transform: visible && imgLoaded ? "scale(1)" : "scale(1.04)",
+          transition: "opacity 1.2s ease 0.2s, transform 1.8s ease 0.2s",
         }}
       >
         <img
@@ -37,6 +39,7 @@ export function Hero() {
           className="w-full h-full"
           style={{ objectFit: "cover", objectPosition: "center 35%" }}
           loading="eager"
+          onLoad={() => setImgLoaded(true)}
         />
         {/* Bottom fade to dark */}
         <div
@@ -58,21 +61,18 @@ export function Hero() {
         }}
       />
 
-      {/* ── LAYER 4: All copy — sits over the dark bottom gradient ── */}
+      {/* ── LAYER 3: All copy — sits over the dark bottom gradient ── */}
       <div
         className="absolute bottom-0 left-0 right-0"
         style={{
           padding: "clamp(1.2rem, 3vw, 2.5rem) clamp(1.2rem, 4vw, 3rem)",
           paddingBottom: "clamp(1.5rem, 4vw, 3rem)",
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(22px)",
-          transition: "opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s",
         }}
       >
-        {/* Two-column: headline left, CTAs right */}
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        {/* Two-column on desktop, stacked & centered on mobile */}
+        <div className="flex flex-col md:flex-row md:flex-wrap md:items-end md:justify-between gap-4 items-center md:items-end text-center md:text-left">
           <div style={{ maxWidth: "clamp(260px, 45vw, 520px)" }}>
-            {/* Small company name */}
+            {/* Eyebrow — company name */}
             <p
               style={{
                 fontFamily: "'Barlow', sans-serif",
@@ -82,12 +82,15 @@ export function Hero() {
                 color: "rgba(255,255,255,0.45)",
                 textTransform: "uppercase" as const,
                 marginBottom: "0.4rem",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(14px)",
+                transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
               }}
             >
               Axiom Advisory Partners
             </p>
 
-            {/* Headline */}
+            {/* Headline — "Strategic counsel." */}
             <h1
               style={{
                 fontFamily: "'Playfair Display', serif",
@@ -97,10 +100,14 @@ export function Hero() {
                 color: "#ffffff",
                 marginBottom: "0.3rem",
                 textShadow: "0 2px 20px rgba(0,0,0,0.6)",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(18px)",
+                transition: "opacity 0.7s ease 0.65s, transform 0.7s ease 0.65s",
               }}
             >
               Strategic counsel.
             </h1>
+            {/* Headline — "Without compromise." */}
             <h1
               style={{
                 fontFamily: "'Playfair Display', serif",
@@ -111,6 +118,9 @@ export function Hero() {
                 color: "#ffffff",
                 marginBottom: "1rem",
                 textShadow: "0 2px 20px rgba(0,0,0,0.6)",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(18px)",
+                transition: "opacity 0.7s ease 0.8s, transform 0.7s ease 0.8s",
               }}
             >
               <span style={{ color: "#D4AF37" }}>Without</span> compromise.
@@ -124,6 +134,9 @@ export function Hero() {
                 lineHeight: 1.75,
                 color: "rgba(255,255,255,0.45)",
                 maxWidth: "42ch",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(14px)",
+                transition: "opacity 0.6s ease 0.95s, transform 0.6s ease 0.95s",
               }}
             >
               Axiom Advisory Partners delivers strategic advisory and operational
@@ -131,8 +144,15 @@ export function Hero() {
             </p>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-3">
+          {/* CTA Buttons — centered on mobile, right-aligned on desktop */}
+          <div
+            className="flex flex-wrap gap-3 justify-center md:justify-end"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(16px)",
+              transition: "opacity 0.6s ease 1.1s, transform 0.6s ease 1.1s",
+            }}
+          >
             <button
               onClick={() => scrollTo("services")}
               style={{
@@ -190,7 +210,14 @@ export function Hero() {
         </div>
 
         {/* Service category pills — below CTAs */}
-        <div className="flex flex-wrap gap-2 mt-5">
+        <div
+          className="flex flex-wrap gap-2 mt-5 justify-center md:justify-start"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(12px)",
+            transition: "opacity 0.5s ease 1.25s, transform 0.5s ease 1.25s",
+          }}
+        >
           {["Advisory", "Governance", "Operations", "Brand", "Risk"].map((tag) => (
             <span
               key={tag}

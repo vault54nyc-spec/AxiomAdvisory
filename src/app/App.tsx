@@ -11,7 +11,10 @@ import LockedClientPage from "./pages/LockedClientPage";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "'Barlow', sans-serif" }}>
+    <div
+      className="min-h-screen bg-white overflow-x-hidden"
+      style={{ fontFamily: "'Barlow', sans-serif" }}
+    >
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
