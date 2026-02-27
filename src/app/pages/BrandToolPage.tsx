@@ -38,7 +38,7 @@ export default function BrandToolPage() {
             className="text-[11px] uppercase tracking-[0.22em] text-[#D4AF37] font-bold"
             style={{ fontFamily: "'DM Mono', monospace" }}
           >
-            Axiom Advisory Partners — Exclusive Tool
+            Axiom Advisory Partners LLC — Exclusive Tool
           </p>
           <h1
             className="text-white leading-tight"

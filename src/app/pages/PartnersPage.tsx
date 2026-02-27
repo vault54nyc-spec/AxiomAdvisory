@@ -14,7 +14,7 @@ export default function PartnersPage() {
     <div className="min-h-screen bg-[#0A0A0A] pt-32 pb-24 px-6 lg:px-16">
       <div className="max-w-[1200px] mx-auto space-y-16">
         <div className="space-y-4 max-w-xl">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-bold" style={{ fontFamily: "'DM Mono', monospace" }}>Axiom Advisory Partners</p>
+          <p className="text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] font-bold" style={{ fontFamily: "'DM Mono', monospace" }}>Axiom Advisory Partners LLC</p>
           <h1 className="text-5xl font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>For Our Partners</h1>
           <p className="text-white/40 text-sm leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>Each engagement is confidential. Access is granted exclusively to the relevant partner.</p>
         </div>
@@ -55,7 +55,7 @@ export default function PartnersPage() {
           </p>
         </div>
         <p className="text-[10px] text-white/15 uppercase tracking-widest text-center" style={{ fontFamily: "'DM Mono', monospace" }}>
-          All engagements are protected by confidentiality agreements — Axiom Advisory Partners © 2026
+          All engagements are protected by confidentiality agreements — Axiom Advisory Partners LLC © 2026 · Founded by Christopher DeMarkus
         </p>
       </div>
     </div>

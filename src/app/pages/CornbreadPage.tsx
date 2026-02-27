@@ -35,7 +35,7 @@ export default function CornbreadPage() {
             <h2 className="text-3xl font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
               Cornbread Strategic Insights
             </h2>
-            <p className="text-gray-500 text-sm tracking-wide">Prepared exclusively by Axiom Advisory Partners</p>
+            <p className="text-gray-500 text-sm tracking-wide">Prepared exclusively by Axiom Advisory Partners LLC LLC LLC</p>
           </div>
           <div className="space-y-4">
             <div className="relative">
@@ -389,7 +389,7 @@ export default function CornbreadPage() {
               BEGIN ENGAGEMENT
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <p className="text-[10px] text-gray-300 uppercase tracking-widest">Confidential — Axiom Advisory Partners © 2026</p>
+            <p className="text-[10px] text-gray-300 uppercase tracking-widest">Confidential — Axiom Advisory Partners LLC © 2026 · Founded by Christopher DeMarkus</p>
           </div>
         );
 
@@ -402,7 +402,7 @@ export default function CornbreadPage() {
       <div className="max-w-[1200px] mx-auto">
         <div className="mb-10 space-y-4">
           <div className="inline-block px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.2em]">
-            Axiom Advisory Partners — Strategic Advisory
+            Axiom Advisory Partners LLC — Strategic Advisory
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#0A0A0A]" style={{ fontFamily: "'Playfair Display', serif" }}>
             Cornbread <span className="text-[#D4AF37]">Strategic Insights</span>

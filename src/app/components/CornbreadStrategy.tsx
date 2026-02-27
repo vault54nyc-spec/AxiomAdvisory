@@ -42,7 +42,7 @@ const CornbreadStrategy = () => {
               Cornbread Strategic Insights
             </h2>
             <p className="text-gray-500 text-sm tracking-wide">
-              Prepared exclusively by Axiom Advisory Partners
+              Prepared exclusively by Axiom Advisory Partners LLC LLC LLC
             </p>
           </div>
 
@@ -341,7 +341,7 @@ const CornbreadStrategy = () => {
             </button>
 
             <p className="text-[10px] text-gray-300 uppercase tracking-widest">
-              Confidential — Axiom Advisory Partners © 2026
+              Confidential — Axiom Advisory Partners LLC © 2026 · Founded by Christopher DeMarkus
             </p>
           </div>
         );
@@ -357,7 +357,7 @@ const CornbreadStrategy = () => {
         {/* Header */}
         <div className="mb-12 space-y-6">
           <div className="inline-block px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.2em]">
-            Axiom Advisory Partners — Strategic Advisory
+            Axiom Advisory Partners LLC — Strategic Advisory
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-[#0A0A0A]" style={{ fontFamily: "'Playfair Display', serif" }}>
             Cornbread <span className="text-[#D4AF37]">Strategic Insights</span>

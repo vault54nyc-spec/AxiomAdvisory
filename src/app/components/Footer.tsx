@@ -58,13 +58,13 @@ export function Footer() {
               className="text-white/30"
               style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", letterSpacing: "0.08em" }}
             >
-              Axiom Advisory Partners, LLC
+              Axiom Advisory Partners LLC
             </p>
             <p
               className="text-white/20 mt-1"
               style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.5625rem", letterSpacing: "0.08em" }}
             >
-              Dallas–Fort Worth, TX · © 2026
+              Dallas–Fort Worth, TX · © 2026 · Founded by Christopher DeMarkus
             </p>
           </div>
         </div>

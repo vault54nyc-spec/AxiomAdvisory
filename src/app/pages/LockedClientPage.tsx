@@ -81,7 +81,7 @@ export default function LockedClientPage({ name, code }: Props) {
         </div>
 
         <p className="text-[10px] text-gray-600 text-center uppercase tracking-widest">
-          Axiom Advisory Partners — Confidential © 2026
+          Axiom Advisory Partners LLC — Confidential © 2026 · Founded by Christopher DeMarkus
         </p>
       </div>
     </div>
