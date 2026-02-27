@@ -11,19 +11,19 @@ export function Hero() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section className="relative min-h-screen overflow-hidden flex flex-col">
+    <section className="relative overflow-hidden flex flex-col" style={{ minHeight: '100svh' }}>
       {/* Background image — centered on all screen sizes */}
       <div className="absolute inset-0">
         <img
           src={heroImg}
           alt="Axiom Advisory Partners"
           className="w-full h-full object-cover"
-          style={{ objectPosition: "center center" }}
+          style={{ objectPosition: "center 10%" }}
           loading="eager"
         />
         {/* Gradient only at bottom third — keeps subject fully visible */}
         <div className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.35) 35%, transparent 65%)" }} />
+          style={{ background: "linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.50) 30%, rgba(10,10,10,0.05) 65%, transparent 100%)" }} />
       </div>
 
       {/* Content — stacked at bottom on mobile, bottom-left on desktop */}
@@ -42,7 +42,7 @@ export function Hero() {
           <h1 className="text-white mb-2 leading-[1.06]"
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2rem, 5vw, 4.5rem)",
+              fontSize: "clamp(1.6rem, 5vw, 4.5rem)",
               fontWeight: 400,
               textShadow: "0 2px 40px rgba(0,0,0,0.7)",
             }}>
