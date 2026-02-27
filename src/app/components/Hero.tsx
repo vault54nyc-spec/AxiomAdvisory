@@ -33,7 +33,7 @@ export function Hero() {
           src={heroImg}
           alt="Christopher DeMarkus — Axiom Advisory Partners"
           className="w-full h-full"
-          style={{ objectFit: "cover", objectPosition: "center center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
           loading="eager"
         />
         {/* Bottom fade to dark */}
