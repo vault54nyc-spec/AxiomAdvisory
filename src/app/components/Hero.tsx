@@ -21,11 +21,10 @@ export function Hero() {
         background: "#e8e8e8",
       }}
     >
-      {/* ── LAYER 1: Subject photo — right half, full height, behind the wordmark ── */}
+      {/* ── LAYER 1: Subject photo — full width, centered ── */}
       <div
-        className="absolute inset-y-0 right-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          width: "58%",
           opacity: visible ? 1 : 0,
           transition: "opacity 0.9s ease 0.3s",
         }}
@@ -34,16 +33,8 @@ export function Hero() {
           src={heroImg}
           alt="Christopher DeMarkus — Axiom Advisory Partners"
           className="w-full h-full"
-          style={{ objectFit: "cover", objectPosition: "center top" }}
+          style={{ objectFit: "cover", objectPosition: "center center" }}
           loading="eager"
-        />
-        {/* Blend left edge into background */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to right, #e8e8e8 0%, rgba(232,232,232,0.3) 25%, transparent 60%)",
-          }}
         />
         {/* Bottom fade to dark */}
         <div
