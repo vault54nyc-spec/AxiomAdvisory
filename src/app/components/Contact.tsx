@@ -16,7 +16,7 @@ const serviceOptions = [
 // 1. Go to https://formspree.io and create a free account
 // 2. Create a new form pointed at: engage@axiomadvisorypartners.co
 // 3. Replace "YOUR_FORMSPREE_ID" below with your form ID (e.g. "xpzgkqrb")
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORMSPREE_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mqedjekk";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", company: "", email: "", service: "", message: "" });
