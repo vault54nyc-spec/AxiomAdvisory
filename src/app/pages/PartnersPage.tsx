@@ -2,10 +2,10 @@ import { useNavigate } from "react-router";
 import { Lock, ArrowRight } from "lucide-react";
 
 const partners = [
-  { number: "01", name: "Walmart", descriptor: "Enterprise Retail", detail: "Strategic partnership & value proposition development", path: "/partners/walmart", logoText: "Walmart", logoColor: "#0071CE", logoBg: "#F0F7FF" },
-  { number: "02", name: "R.O.R.I. Project", descriptor: "Nonprofit", detail: "Organizational infrastructure & governance", path: "/partners/rori-project", logoText: "R.O.R.I.", logoColor: "#8B2FC9", logoBg: "#F7F0FF" },
-  { number: "03", name: "NPHC of Hudson County", descriptor: "Nonprofit / Civic", detail: "Operations & communications advisory", path: "/partners/nphc-hudson", logoText: "NPHC", logoColor: "#1A3A6B", logoBg: "#F0F4FF" },
-  { number: "04", name: "Cornbread Soul", descriptor: "Fast-Casual / Hospitality", detail: "Brand & operational strategy", path: "/partners/cornbread", logoText: "CB", logoColor: "#8B4513", logoBg: "#FFF5EB", active: true },
+  { number: "01", name: "Walmart", descriptor: "Enterprise Retail", detail: "Strategic partnership & value proposition development", path: "/partners/walmart", logoImg: "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/IMG_5813.png" },
+  { number: "02", name: "R.O.R.I. Project", descriptor: "Nonprofit", detail: "Organizational infrastructure & governance", path: "/partners/rori-project", logoImg: "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/IMG_5814.jpeg" },
+  { number: "03", name: "NPHC of Hudson County", descriptor: "Nonprofit / Civic", detail: "Operations & communications advisory", path: "/partners/nphc-hudson", logoImg: "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/IMG_5815.jpeg" },
+  { number: "04", name: "Cornbread Soul", descriptor: "Fast-Casual / Hospitality", detail: "Brand & operational strategy", path: "/partners/cornbread", logoImg: "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/IMG_5816.jpeg", active: true },
 ];
 
 export default function PartnersPage() {
@@ -28,9 +28,8 @@ export default function PartnersPage() {
                 </div>
               )}
               <div className="flex items-start justify-between mb-8">
-                <div className="w-14 h-14 flex items-center justify-center font-bold text-sm"
-                  style={{ background: p.logoBg, color: p.logoColor, fontFamily: "'Barlow', sans-serif", letterSpacing: "0.05em" }}>
-                  {p.logoText}
+                <div className="w-14 h-14 flex items-center justify-center overflow-hidden bg-white/5">
+                  <img src={p.logoImg} alt={p.name} className="w-full h-full object-contain" />
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-[10px] uppercase tracking-[0.2em] text-white/20 font-bold" style={{ fontFamily: "'DM Mono', monospace" }}>{p.number}</span>
@@ -47,12 +46,6 @@ export default function PartnersPage() {
               </div>
             </div>
           ))}
-        </div>
-        <div className="border border-white/8 p-5 flex items-start gap-4">
-          <div className="w-0.5 self-stretch bg-[#D4AF37]/30 shrink-0" />
-          <p className="text-white/25 text-xs leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-            Partner logo assets are placeholders. Send the official logo files and they will be swapped in immediately.
-          </p>
         </div>
         <p className="text-[10px] text-white/15 uppercase tracking-widest text-center" style={{ fontFamily: "'DM Mono', monospace" }}>
           All engagements are protected by confidentiality agreements — Axiom Advisory Partners LLC © 2026 · Founded by Christopher DeMarkus
