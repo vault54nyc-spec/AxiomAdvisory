@@ -1,24 +1,28 @@
-export function EngagementBanner() {
-  const scrollTo = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
+import { useNavigate } from "react-router";
 
+export function EngagementBanner() {
+  const navigate = useNavigate();
+  const scrollTo = () => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   return (
-    <section className="bg-[#D4AF37]">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 py-14 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <h2
-          className="text-[#0A0A0A]"
-          style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 500 }}
-        >
-          Ready to Build?
-        </h2>
-        <button
-          onClick={scrollTo}
-          className="px-8 py-3.5 bg-[#0A0A0A] text-white hover:bg-[#1a1a1a] transition-colors"
-          style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.04em" }}
-        >
-          Begin Engagement →
-        </button>
+    <section className="relative bg-[#D4AF37] overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse" style={{ animationDuration: "3s" }} />
+      <div className="relative max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 py-14 sm:py-16 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h2 className="text-[#0A0A0A]" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", fontWeight: 500 }}>Ready to Build?</h2>
+          <p className="text-[#0A0A0A]/60 mt-1 text-sm" style={{ fontFamily: "'Barlow', sans-serif" }}>Let's architect something that lasts.</p>
+        </div>
+        <div className="flex flex-wrap gap-4">
+          <button onClick={scrollTo}
+            className="px-8 py-3.5 bg-[#0A0A0A] text-white hover:bg-[#1a1a1a] transition-colors"
+            style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.04em" }}>
+            Begin Engagement →
+          </button>
+          <button onClick={() => navigate("/partners")}
+            className="px-6 py-3.5 border border-[#0A0A0A]/40 text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-white transition-colors"
+            style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.04em" }}>
+            Our Partners
+          </button>
+        </div>
       </div>
     </section>
   );

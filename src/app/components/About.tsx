@@ -1,106 +1,55 @@
-const credentials = [
-  { abbr: "CCOS", full: "Certified Chief of Staff" },
-  { abbr: "PMP", full: "Project Management Professional" },
-  { abbr: "CFE", full: "Certified Fraud Examiner" },
-  { abbr: "EMBA", full: "Executive MBA" },
-  { abbr: "Fortune 10", full: "Enterprise Experience" },
-  { abbr: "F10", full: "Strategic Operations" },
+import { useEffect, useRef, useState } from "react";
+
+function useInView(threshold = 0.12) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } }, { threshold });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return { ref, inView };
+}
+
+const pillars = [
+  { label: "Precision", desc: "Every recommendation is grounded in evidence, not assumption." },
+  { label: "Discretion", desc: "We operate with the confidentiality your organization demands." },
+  { label: "Accountability", desc: "We are measured by outcomes, not deliverables." },
 ];
 
 export function About() {
+  const { ref, inView } = useInView();
   return (
-    <section id="about" className="bg-[#FAFAFA] py-24 lg:py-32">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-        {/* Section header */}
-        <div className="mb-16">
-          <p
-            className="text-[#D4AF37] mb-3"
-            style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.15em", textTransform: "uppercase" }}
-          >
-            About
-          </p>
-          <div className="flex items-center gap-6">
-            <h2
-              className="text-[#0A0A0A]"
-              style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.75rem, 3vw, 2.75rem)", fontWeight: 400 }}
-            >
-              The Advisor
-            </h2>
-            <div className="flex-1 h-px bg-[#D4AF37]/40" />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          {/* Left — sticky credentials */}
-          <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-28">
-              <div className="mb-10">
-                <span
-                  className="text-[#D4AF37] block"
-                  style={{ fontFamily: "'Playfair Display', serif", fontSize: "4rem", fontWeight: 600, lineHeight: 1 }}
-                >
-                  16+
-                </span>
-                <span
-                  className="text-[#0A0A0A]/50 mt-1 block"
-                  style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.1em", textTransform: "uppercase" }}
-                >
-                  Years of Experience
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                {credentials.map((c) => (
-                  <div
-                    key={c.abbr}
-                    className="border border-gray-200 px-4 py-3 group hover:border-[#D4AF37] transition-colors"
-                  >
-                    <span
-                      className="text-[#0A0A0A] block"
-                      style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.75rem", fontWeight: 500 }}
-                    >
-                      {c.abbr}
-                    </span>
-                    <span
-                      className="text-[#0A0A0A]/40 block mt-0.5"
-                      style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.625rem", letterSpacing: "0.04em" }}
-                    >
-                      {c.full}
-                    </span>
-                  </div>
-                ))}
-              </div>
+    <section id="about" className="bg-[#F9F7F3] py-20 sm:py-28 lg:py-36" ref={ref}>
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="space-y-8"
+            style={{ opacity: inView ? 1 : 0, transform: inView ? "none" : "translateX(-30px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
+            <div>
+              <p className="text-[#D4AF37] mb-3 uppercase tracking-[0.2em] text-[11px] font-bold" style={{ fontFamily: "'DM Mono', monospace" }}>About the Firm</p>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.75rem, 3vw, 2.75rem)", fontWeight: 400, color: "#0A0A0A" }}>
+                Built for the Complexity<br /><em style={{ color: "#D4AF37" }}>Others Avoid</em>
+              </h2>
             </div>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem", lineHeight: 1.85, color: "rgba(10,10,10,0.65)" }}>
+              Axiom Advisory Partners is a boutique strategic advisory firm delivering institutional-grade counsel with the agility of a trusted partner. We embed where it matters — at the intersection of strategy, operations, and organizational leadership.
+            </p>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem", lineHeight: 1.85, color: "rgba(10,10,10,0.65)" }}>
+              As a minority-owned firm based in Dallas–Fort Worth, we are committed to delivering the kind of advisory that moves organizations — not just advises them.
+            </p>
           </div>
-
-          {/* Right — copy */}
-          <div className="lg:col-span-8">
-            <div className="max-w-2xl space-y-6">
-              <p
-                className="text-[#0A0A0A]/80"
-                style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1.0625rem", lineHeight: 1.85 }}
-              >
-                Axiom Advisory Partners was founded on a singular premise: that strategic counsel should be as rigorous as it is actionable. With over sixteen years of experience spanning Fortune 10 enterprises, federal agencies, and high-growth ventures, our founder brings a rare depth of operational fluency to every engagement.
-              </p>
-              <p
-                className="text-[#0A0A0A]/80"
-                style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1.0625rem", lineHeight: 1.85 }}
-              >
-                His career has been defined by building governance frameworks from the ground up — designing organizational structures that scale, compliance architectures that withstand regulatory scrutiny, and crisis management protocols that perform under pressure. From third-party risk management programs to enterprise-wide operational transformations, he has consistently served as the strategic center of gravity for complex, cross-functional initiatives.
-              </p>
-              <p
-                className="text-[#0A0A0A]/80"
-                style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1.0625rem", lineHeight: 1.85 }}
-              >
-                Beyond the boardroom, he has deployed operational expertise in disaster relief contexts — coordinating multi-agency responses and standing up infrastructure in high-stakes, resource-constrained environments. This versatility is the signature of the Axiom approach: precision in strategy, resilience in execution.
-              </p>
-              <p
-                className="text-[#0A0A0A]/80"
-                style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1.0625rem", lineHeight: 1.85 }}
-              >
-                As a minority-owned firm based in Dallas–Fort Worth, Axiom Advisory Partners is committed to delivering institutional-grade advisory services with the agility and attentiveness that only a boutique practice can offer.
-              </p>
-            </div>
+          <div className="space-y-0 divide-y divide-[#0A0A0A]/8"
+            style={{ opacity: inView ? 1 : 0, transform: inView ? "none" : "translateX(30px)", transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s" }}>
+            {pillars.map((p, i) => (
+              <div key={p.label} className="py-7 flex gap-6 items-start"
+                style={{ opacity: inView ? 1 : 0, transform: inView ? "none" : "translateY(20px)", transition: `opacity 0.5s ease ${0.3 + i * 0.12}s, transform 0.5s ease ${0.3 + i * 0.12}s` }}>
+                <div className="w-1 h-8 bg-[#D4AF37] shrink-0 mt-1" />
+                <div>
+                  <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.1rem", fontWeight: 600, color: "#0A0A0A" }}>{p.label}</p>
+                  <p className="mt-1" style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(10,10,10,0.55)" }}>{p.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
