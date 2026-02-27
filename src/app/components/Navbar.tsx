@@ -26,6 +26,7 @@ export function Navbar() {
   useEffect(() => { setMobileOpen(false); }, [location.pathname]);
 
   const navLinks = [
+    { label: "Home", path: "/" },
     { label: "Services", path: "/services" },
     { label: "Architecture", path: "/architecture" },
     { label: "About", path: "/about" },
@@ -75,7 +76,7 @@ export function Navbar() {
               onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
             />
             <span
-              className="font-semibold tracking-wide hidden sm:block transition-colors"
+              className="font-semibold tracking-wide transition-colors hidden sm:block"
               style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.75rem", color: isHome ? "rgba(255,255,255,0.7)" : "#0A0A0A", letterSpacing: "0.06em" }}
             >
               AXIOM ADVISORY

@@ -3,20 +3,15 @@ import { useNavigate } from "react-router";
 export function Footer() {
   const navigate = useNavigate();
 
-  const scrollTo = (id: string) => {
-    navigate("/");
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }, 300);
-  };
-
   const links = [
-    { label: "Services", action: () => scrollTo("services") },
-    { label: "About", action: () => scrollTo("about") },
-    { label: "Work", action: () => scrollTo("work") },
-    { label: "Brand Tool", action: () => navigate("/brand-tool") },
-    { label: "For Our Partners", action: () => navigate("/partners") },
-    { label: "Contact", action: () => scrollTo("contact") },
+    { label: "Home", path: "/" },
+    { label: "Services", path: "/services" },
+    { label: "Architecture", path: "/architecture" },
+    { label: "About", path: "/about" },
+    { label: "Work", path: "/work" },
+    { label: "Brand Tool", path: "/brand-tool" },
+    { label: "For Our Partners", path: "/partners" },
+    { label: "Contact", path: "/contact" },
   ];
 
   return (
@@ -44,7 +39,7 @@ export function Footer() {
             {links.map((link) => (
               <button
                 key={link.label}
-                onClick={link.action}
+                onClick={() => navigate(link.path)}
                 className="text-white/40 hover:text-[#D4AF37] transition-colors"
                 style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.06em" }}
               >
