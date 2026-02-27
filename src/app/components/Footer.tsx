@@ -64,7 +64,7 @@ export function Footer() {
               className="text-white/20 mt-1"
               style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.5625rem", letterSpacing: "0.08em" }}
             >
-              Dallas–Fort Worth, TX · © 2026 · Founded by Christopher DeMarkus
+              Jersey City, NJ · New York City, NY · © 2026 · Founded by Christopher DeMarkus
             </p>
           </div>
         </div>
