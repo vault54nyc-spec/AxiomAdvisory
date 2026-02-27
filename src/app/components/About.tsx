@@ -86,13 +86,13 @@ export function About() {
                 className="text-[#0A0A0A]/80"
                 style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1.0625rem", lineHeight: 1.85 }}
               >
-                Her career has been defined by building governance frameworks from the ground up — designing organizational structures that scale, compliance architectures that withstand regulatory scrutiny, and crisis management protocols that perform under pressure. From third-party risk management programs to enterprise-wide operational transformations, she has consistently served as the strategic center of gravity for complex, cross-functional initiatives.
+                His career has been defined by building governance frameworks from the ground up — designing organizational structures that scale, compliance architectures that withstand regulatory scrutiny, and crisis management protocols that perform under pressure. From third-party risk management programs to enterprise-wide operational transformations, he has consistently served as the strategic center of gravity for complex, cross-functional initiatives.
               </p>
               <p
                 className="text-[#0A0A0A]/80"
                 style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1.0625rem", lineHeight: 1.85 }}
               >
-                Beyond the boardroom, she has deployed operational expertise in disaster relief contexts — coordinating multi-agency responses and standing up infrastructure in high-stakes, resource-constrained environments. This versatility is the signature of the Axiom approach: precision in strategy, resilience in execution.
+                Beyond the boardroom, he has deployed operational expertise in disaster relief contexts — coordinating multi-agency responses and standing up infrastructure in high-stakes, resource-constrained environments. This versatility is the signature of the Axiom approach: precision in strategy, resilience in execution.
               </p>
               <p
                 className="text-[#0A0A0A]/80"

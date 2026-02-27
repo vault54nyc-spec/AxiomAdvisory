@@ -12,14 +12,36 @@ const serviceOptions = [
   "Brand Strategy & Market Presence",
 ];
 
+// ACTION REQUIRED: Replace with your Formspree form ID
+// 1. Go to https://formspree.io and create a free account
+// 2. Create a new form pointed at: engage@axiomadvisorypartners.co
+// 3. Replace "YOUR_FORMSPREE_ID" below with your form ID (e.g. "xpzgkqrb")
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORMSPREE_ID";
+
 export function Contact() {
   const [form, setForm] = useState({ name: "", company: "", email: "", service: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus("submitting");
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", company: "", email: "", service: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   const inputStyle: React.CSSProperties = {
@@ -53,11 +75,8 @@ export function Contact() {
                 >
                   Email
                 </p>
-                <p
-                  className="text-[#0A0A0A]"
-                  style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem" }}
-                >
-                  engage@axiomadvisory.com
+                <p className="text-[#0A0A0A]" style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem" }}>
+                  engage@axiomadvisorypartners.co
                 </p>
               </div>
               <div>
@@ -67,10 +86,7 @@ export function Contact() {
                 >
                   Office
                 </p>
-                <p
-                  className="text-[#0A0A0A]"
-                  style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem" }}
-                >
+                <p className="text-[#0A0A0A]" style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem" }}>
                   Dallas–Fort Worth, TX
                 </p>
               </div>
@@ -81,11 +97,8 @@ export function Contact() {
                 >
                   Availability
                 </p>
-                <p
-                  className="text-[#0A0A0A]"
-                  style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem" }}
-                >
-                  Accepting new engagements Q1 2026
+                <p className="text-[#0A0A0A]" style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem" }}>
+                  Now accepting new engagements
                 </p>
               </div>
             </div>
@@ -93,7 +106,7 @@ export function Contact() {
 
           {/* Right — form */}
           <div>
-            {submitted ? (
+            {status === "success" ? (
               <div className="h-full flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-12 h-12 border-2 border-[#D4AF37] flex items-center justify-center mx-auto mb-4">
@@ -189,12 +202,23 @@ export function Contact() {
                     style={inputStyle}
                   />
                 </div>
+
+                {status === "error" && (
+                  <p
+                    className="text-red-500 text-sm"
+                    style={{ fontFamily: "'Barlow', sans-serif" }}
+                  >
+                    Something went wrong. Please email us directly at engage@axiomadvisorypartners.co
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="px-8 py-3.5 bg-[#D4AF37] text-[#0A0A0A] hover:bg-[#c9a22f] transition-colors mt-4"
+                  disabled={status === "submitting"}
+                  className="px-8 py-3.5 bg-[#D4AF37] text-[#0A0A0A] hover:bg-[#c9a22f] transition-colors mt-4 disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.04em" }}
                 >
-                  Submit Inquiry
+                  {status === "submitting" ? "Sending..." : "Submit Inquiry"}
                 </button>
               </form>
             )}
