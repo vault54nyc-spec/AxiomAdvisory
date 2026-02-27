@@ -41,8 +41,8 @@ export function Navbar() {
   // On other pages: always frosted white
   const bgStyle: React.CSSProperties = isHome
     ? {
-        background: scrolled ? "rgba(10,10,10,0.82)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
+        background: scrolled ? "rgba(10,10,10,0.82)" : "rgba(0,0,0,0.45)",
+        backdropFilter: "blur(12px)",
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
         transition: "background 0.35s ease, backdrop-filter 0.35s ease",
       }
