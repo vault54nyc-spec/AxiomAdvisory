@@ -1,28 +1,27 @@
+import { Routes, Route } from "react-router";
 import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
-import { Services } from "./components/Services";
-import { ServiceArchitecture } from "./components/ServiceArchitecture";
-import { BrandDecisionTool } from "./components/BrandDecisionTool";
-import { About } from "./components/About";
-import { CaseStudies } from "./components/CaseStudies";
-import { EngagementBanner } from "./components/EngagementBanner";
-import { Contact } from "./components/Contact";
-import CornbreadStrategy from "./components/CornbreadStrategy";
 import { Footer } from "./components/Footer";
+
+// Pages
+import HomePage from "./pages/HomePage";
+import BrandToolPage from "./pages/BrandToolPage";
+import PartnersPage from "./pages/PartnersPage";
+import CornbreadPage from "./pages/CornbreadPage";
+import LockedClientPage from "./pages/LockedClientPage";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: "'Barlow', sans-serif" }}>
       <Navbar />
-      <Hero />
-      <Services />
-      <ServiceArchitecture />
-      <BrandDecisionTool />
-      <About />
-      <CaseStudies />
-      <EngagementBanner />
-      <Contact />
-      <CornbreadStrategy />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/brand-tool" element={<BrandToolPage />} />
+        <Route path="/partners" element={<PartnersPage />} />
+        <Route path="/partners/cornbread" element={<CornbreadPage />} />
+        <Route path="/partners/walmart" element={<LockedClientPage name="Walmart" code="walmart" />} />
+        <Route path="/partners/rori-project" element={<LockedClientPage name="R.O.R.I. Project" code="rori" />} />
+        <Route path="/partners/nphc-hudson" element={<LockedClientPage name="NPHC of Hudson County" code="nphc" />} />
+      </Routes>
       <Footer />
     </div>
   );

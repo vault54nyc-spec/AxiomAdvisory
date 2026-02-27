@@ -1,23 +1,32 @@
-const navLinks = [
-  { label: "Services", id: "services" },
-  { label: "Architecture", id: "architecture" },
-  { label: "Brand Tool", id: "tool" },
-  { label: "About", id: "about" },
-  { label: "Work", id: "work" },
-  { label: "Contact", id: "contact" },
-];
+import { useNavigate } from "react-router";
 
 export function Footer() {
+  const navigate = useNavigate();
+
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    navigate("/");
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, 300);
   };
+
+  const links = [
+    { label: "Services", action: () => scrollTo("services") },
+    { label: "About", action: () => scrollTo("about") },
+    { label: "Work", action: () => scrollTo("work") },
+    { label: "Brand Tool", action: () => navigate("/brand-tool") },
+    { label: "For Our Partners", action: () => navigate("/partners") },
+    { label: "Contact", action: () => scrollTo("contact") },
+  ];
 
   return (
     <footer className="bg-[#0A0A0A] border-t border-[#D4AF37]/30">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 py-12">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
+          <div
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             <div className="w-9 h-9 bg-[#0A0A0A] border border-[#D4AF37]/40 flex items-center justify-center">
               <span style={{ fontFamily: "'Playfair Display', serif", color: "#D4AF37", fontSize: "1rem", fontWeight: 700 }}>
                 A
@@ -31,12 +40,11 @@ export function Footer() {
             </span>
           </div>
 
-          {/* Nav */}
-          <div className="flex items-center gap-8">
-            {navLinks.map((link) => (
+          <div className="flex flex-wrap items-center gap-6">
+            {links.map((link) => (
               <button
-                key={link.id}
-                onClick={() => scrollTo(link.id)}
+                key={link.label}
+                onClick={link.action}
                 className="text-white/40 hover:text-[#D4AF37] transition-colors"
                 style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.06em" }}
               >
@@ -45,7 +53,6 @@ export function Footer() {
             ))}
           </div>
 
-          {/* Right */}
           <div className="text-right">
             <p
               className="text-white/30"
@@ -62,7 +69,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-      {/* Bottom gold rule */}
       <div className="h-px bg-[#D4AF37]/40" />
     </footer>
   );
