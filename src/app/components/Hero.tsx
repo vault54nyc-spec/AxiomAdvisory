@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const heroImg = "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/image.jpg";
+const heroImg = "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/image.jpeg";
 
 export function Hero() {
   const [visible, setVisible] = useState(false);
