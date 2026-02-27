@@ -65,55 +65,6 @@ export function Hero() {
         }}
       />
 
-      {/* ── LAYER 3: AXIOM SVG wordmark — always fits full width, never clips ── */}
-      <div
-        className="absolute top-0 left-0 right-0 pointer-events-none select-none"
-        style={{
-          opacity: visible ? 1 : 0,
-          transition: "opacity 1s ease 0.15s",
-          paddingTop: "0",
-        }}
-      >
-        <svg
-          viewBox="0 0 1000 220"
-          preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ width: "100%", height: "auto", display: "block" }}
-        >
-          <text
-            x="500"
-            y="195"
-            textAnchor="middle"
-            fontFamily="'Playfair Display', Georgia, serif"
-            fontWeight="700"
-            fontSize="220"
-            fill="none"
-            stroke="rgba(20,20,20,0.82)"
-            strokeWidth="1.2"
-            letterSpacing="-4"
-          >
-            AXIOM
-          </text>
-        </svg>
-
-        {/* ADVISORY PARTNERS — below AXIOM, spaced caps */}
-        <div
-          style={{
-            fontFamily: "'Barlow', sans-serif",
-            fontWeight: 300,
-            fontSize: "clamp(0.7rem, 2.8vw, 2rem)",
-            letterSpacing: "0.38em",
-            color: "rgba(20,20,20,0.75)",
-            paddingLeft: "3.5vw",
-            marginTop: "-1vw",
-            textTransform: "uppercase" as const,
-            userSelect: "none" as const,
-          }}
-        >
-          Advisory Partners
-        </div>
-      </div>
-
       {/* ── LAYER 4: All copy — sits over the dark bottom gradient ── */}
       <div
         className="absolute bottom-0 left-0 right-0"
