@@ -7,6 +7,7 @@ import { About } from "./components/About";
 import { CaseStudies } from "./components/CaseStudies";
 import { EngagementBanner } from "./components/EngagementBanner";
 import { Contact } from "./components/Contact";
+import CornbreadStrategy from "./components/CornbreadStrategy";
 import { Footer } from "./components/Footer";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
       <CaseStudies />
       <EngagementBanner />
       <Contact />
+      <CornbreadStrategy />
       <Footer />
     </div>
   );

@@ -6,6 +6,7 @@ const navLinks = [
   { label: "Brand Tool", id: "tool" },
   { label: "About", id: "about" },
   { label: "Work", id: "work" },
+  { label: "Cornbread Strategy", id: "cornbread-strategy" },
   { label: "Contact", id: "contact" },
 ];
 
