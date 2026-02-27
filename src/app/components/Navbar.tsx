@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 
-const navLinks = ["Services", "About", "Work", "Contact"];
+const navLinks = [
+  { label: "Services", id: "services" },
+  { label: "Architecture", id: "architecture" },
+  { label: "Brand Tool", id: "tool" },
+  { label: "About", id: "about" },
+  { label: "Work", id: "work" },
+  { label: "Contact", id: "contact" },
+];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -13,7 +20,7 @@ export function Navbar() {
   }, []);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
   };
 
@@ -32,7 +39,7 @@ export function Navbar() {
             </span>
           </div>
           <span
-            className={`hidden sm:block transition-colors duration-300 tracking-wide ${scrolled ? "text-[#0A0A0A]" : "text-white"}`}
+            className={`hidden sm:block transition-colors duration-300 tracking-wide ${scrolled ? "text-[#0A0A0A]" : "text-[#0A0A0A]"}`}
             style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.08em" }}
           >
             AXIOM ADVISORY PARTNERS
@@ -43,12 +50,12 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <button
-              key={link}
-              onClick={() => scrollTo(link)}
-              className={`transition-colors duration-200 hover:text-[#D4AF37] ${scrolled ? "text-[#0A0A0A]" : "text-white"}`}
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
+              className={`transition-colors duration-200 hover:text-[#D4AF37] ${scrolled ? "text-[#0A0A0A]" : "text-[#0A0A0A]"}`}
               style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.8125rem", fontWeight: 500, letterSpacing: "0.06em" }}
             >
-              {link}
+              {link.label}
             </button>
           ))}
         </div>
@@ -67,9 +74,9 @@ export function Navbar() {
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             <div className="flex flex-col gap-1.5">
-              <span className={`block w-6 h-[2px] transition-all ${scrolled ? "bg-[#0A0A0A]" : "bg-white"} ${mobileOpen ? "rotate-45 translate-y-[5px]" : ""}`} />
-              <span className={`block w-6 h-[2px] transition-all ${scrolled ? "bg-[#0A0A0A]" : "bg-white"} ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`block w-6 h-[2px] transition-all ${scrolled ? "bg-[#0A0A0A]" : "bg-white"} ${mobileOpen ? "-rotate-45 -translate-y-[5px]" : ""}`} />
+              <span className={`block w-6 h-[2px] transition-all ${scrolled ? "bg-[#0A0A0A]" : "bg-[#0A0A0A]"} ${mobileOpen ? "rotate-45 translate-y-[5px]" : ""}`} />
+              <span className={`block w-6 h-[2px] transition-all ${scrolled ? "bg-[#0A0A0A]" : "bg-[#0A0A0A]"} ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-6 h-[2px] transition-all ${scrolled ? "bg-[#0A0A0A]" : "bg-[#0A0A0A]"} ${mobileOpen ? "-rotate-45 -translate-y-[5px]" : ""}`} />
             </div>
           </button>
         </div>
@@ -80,12 +87,12 @@ export function Navbar() {
         <div className="md:hidden bg-white border-t border-gray-100 px-6 py-6 flex flex-col gap-4">
           {navLinks.map((link) => (
             <button
-              key={link}
-              onClick={() => scrollTo(link)}
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
               className="text-left text-[#0A0A0A] hover:text-[#D4AF37] transition-colors"
               style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.9375rem", fontWeight: 500 }}
             >
-              {link}
+              {link.label}
             </button>
           ))}
           <button

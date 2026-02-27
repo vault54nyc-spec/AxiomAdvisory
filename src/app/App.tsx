@@ -1,6 +1,8 @@
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { Services } from "./components/Services";
+import { ServiceArchitecture } from "./components/ServiceArchitecture";
+import { BrandDecisionTool } from "./components/BrandDecisionTool";
 import { About } from "./components/About";
 import { CaseStudies } from "./components/CaseStudies";
 import { EngagementBanner } from "./components/EngagementBanner";
@@ -13,6 +15,8 @@ export default function App() {
       <Navbar />
       <Hero />
       <Services />
+      <ServiceArchitecture />
+      <BrandDecisionTool />
       <About />
       <CaseStudies />
       <EngagementBanner />

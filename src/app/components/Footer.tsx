@@ -1,8 +1,15 @@
-const navLinks = ["Services", "About", "Work", "Contact"];
+const navLinks = [
+  { label: "Services", id: "services" },
+  { label: "Architecture", id: "architecture" },
+  { label: "Brand Tool", id: "tool" },
+  { label: "About", id: "about" },
+  { label: "Work", id: "work" },
+  { label: "Contact", id: "contact" },
+];
 
 export function Footer() {
   const scrollTo = (id: string) => {
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -28,12 +35,12 @@ export function Footer() {
           <div className="flex items-center gap-8">
             {navLinks.map((link) => (
               <button
-                key={link}
-                onClick={() => scrollTo(link)}
+                key={link.id}
+                onClick={() => scrollTo(link.id)}
                 className="text-white/40 hover:text-[#D4AF37] transition-colors"
                 style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.06em" }}
               >
-                {link}
+                {link.label}
               </button>
             ))}
           </div>

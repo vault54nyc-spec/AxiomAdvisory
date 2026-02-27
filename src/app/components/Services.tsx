@@ -8,6 +8,7 @@ const services = [
   { num: "07", name: "Crisis Management Infrastructure", desc: "Designing incident response protocols, communications playbooks, and continuity frameworks before disruption strikes." },
   { num: "08", name: "Strategic Risk Assessment", desc: "Identifying, quantifying, and mitigating enterprise risks across operational, reputational, and regulatory dimensions." },
   { num: "09", name: "Brand Strategy & Market Presence", desc: "Positioning organizations for market differentiation through strategic brand architecture, narrative, and competitive analysis." },
+  { num: "10", name: "Brand Decision Studio", desc: "Interactive strategic tool that helps founders and executive teams choose positioning, visual direction, GTM path, and service structure." },
 ];
 
 export function Services() {

@@ -1,0 +1,4 @@
+.vercel
+node_modules
+dist
+_imported_assets

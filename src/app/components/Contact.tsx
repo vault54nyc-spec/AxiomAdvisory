@@ -10,6 +10,7 @@ const serviceOptions = [
   "Crisis Management",
   "Strategic Risk Assessment",
   "Brand Strategy & Market Presence",
+  "Brand Decision Studio",
 ];
 
 // ACTION REQUIRED: Replace with your Formspree form ID
