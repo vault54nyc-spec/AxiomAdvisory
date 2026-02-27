@@ -57,7 +57,7 @@ export function Navbar() {
   const hamburgerColor = isHome ? "#FFFFFF" : "#0A0A0A";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50" style={bgStyle}>
+    <nav className="fixed top-0 left-0 right-0" style={{ ...bgStyle, zIndex: 9999 }}>
       <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 h-16 flex items-center justify-between">
         {/* Logo */}
         <button onClick={() => navigate("/")} className="flex items-center gap-2 group">

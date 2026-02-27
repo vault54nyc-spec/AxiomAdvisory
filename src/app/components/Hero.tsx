@@ -15,10 +15,12 @@ export function Hero() {
 
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative"
       style={{
         minHeight: "100svh",
         background: "#e8e8e8",
+        zIndex: 0,
+        isolation: "isolate",
       }}
     >
       {/* ── LAYER 1: Subject photo — full width, centered ── */}
