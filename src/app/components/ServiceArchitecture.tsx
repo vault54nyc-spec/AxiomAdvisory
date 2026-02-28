@@ -24,6 +24,34 @@ const serviceArchitecture: ServiceArchitectureItem[] = [
   },
   {
     num: "02",
+    title: "Brand Infrastructure & Market Presence",
+    strapline: "Built to Be Found, Designed to Be Remembered",
+    description:
+      "Applies governance-level rigor to market positioning, digital presence, and go-to-market execution.",
+    deliverables: [
+      "Brand positioning and messaging architecture",
+      "Go-to-market strategy using the 4 Ps framework",
+      "Audience segmentation and competitive landscape analysis",
+      "Website and digital presence information architecture",
+    ],
+    engagementTypes: "Brand strategy sprint, GTM advisory retainer, digital presence project",
+  },
+  {
+    num: "03",
+    title: "Brand Decision Studio",
+    strapline: "Decide Before You Build",
+    description:
+      "Structured decision framework for founders and executives to lock positioning, creative direction, and launch strategy.",
+    deliverables: [
+      "Positioning pathway evaluation",
+      "Brand identity and narrative direction mapping",
+      "Audience-fit and offer clarity assessment",
+      "Decision-ready GTM recommendation",
+    ],
+    engagementTypes: "Decision sprint, founder workshop, pre-launch strategy build",
+  },
+  {
+    num: "04",
     title: "Strategy to Structure",
     strapline: "From Vision to Operating Model",
     description:
@@ -37,7 +65,7 @@ const serviceArchitecture: ServiceArchitectureItem[] = [
     engagementTypes: "Strategic advisory retainer, quarterly facilitation, planning cycle support",
   },
   {
-    num: "03",
+    num: "05",
     title: "End-to-End Operations Management",
     strapline: "The Infrastructure Behind the Vision",
     description:
@@ -51,7 +79,7 @@ const serviceArchitecture: ServiceArchitectureItem[] = [
     engagementTypes: "Embedded operator, project-based governance, PMO buildout",
   },
   {
-    num: "04",
+    num: "06",
     title: "AI Governance & Compliance Framework",
     strapline: "Structure for What's Coming",
     description:
@@ -65,7 +93,7 @@ const serviceArchitecture: ServiceArchitectureItem[] = [
     engagementTypes: "Assessment + framework build, ongoing compliance advisory, policy refresh retainer",
   },
   {
-    num: "05",
+    num: "07",
     title: "Organizational Governance & Decision Architecture",
     strapline: "Clarity at Every Level",
     description:
@@ -79,7 +107,7 @@ const serviceArchitecture: ServiceArchitectureItem[] = [
     engagementTypes: "Governance audit + design, ongoing advisory, board support",
   },
   {
-    num: "06",
+    num: "08",
     title: "Executive Communications & Narrative Strategy",
     strapline: "What Gets Said, and How",
     description:
@@ -93,7 +121,7 @@ const serviceArchitecture: ServiceArchitectureItem[] = [
     engagementTypes: "Project-based, retained communications partner, crisis surge",
   },
   {
-    num: "07",
+    num: "09",
     title: "Crisis Management Infrastructure",
     strapline: "Ready Before You Need It",
     description:
@@ -107,7 +135,7 @@ const serviceArchitecture: ServiceArchitectureItem[] = [
     engagementTypes: "Plan development, tabletop facilitation, readiness retainer, embedded crisis lead",
   },
   {
-    num: "08",
+    num: "10",
     title: "Strategic Risk Assessment",
     strapline: "See It Before It Sees You",
     description:
@@ -119,20 +147,6 @@ const serviceArchitecture: ServiceArchitectureItem[] = [
       "ERM committee structures and reporting cadence design",
     ],
     engagementTypes: "Point-in-time assessment, ongoing risk advisory, ERM buildout",
-  },
-  {
-    num: "09",
-    title: "Brand Strategy & Market Presence",
-    strapline: "Built to Be Found, Designed to Be Remembered",
-    description:
-      "Applies governance-level rigor to market positioning, digital presence, and go-to-market execution.",
-    deliverables: [
-      "Brand positioning and messaging architecture",
-      "Go-to-market strategy using the 4 Ps framework",
-      "Audience segmentation and competitive landscape analysis",
-      "Website and digital presence information architecture",
-    ],
-    engagementTypes: "Brand strategy sprint, GTM advisory retainer, digital presence project",
   },
 ];
 
@@ -163,8 +177,6 @@ const engagementModels = [
     bestFor: "Risk assessments, governance audits, readiness reviews",
   },
 ];
-
-const credentials = ["PMP", "CCOS", "CFE", "EMBA", "16+ years Fortune 500 operations"];
 
 const proofPoints = [
   "Executive governance and portfolio management support at Fortune 10 scale",
@@ -263,22 +275,8 @@ export function ServiceArchitecture() {
 
           <div className="xl:col-span-2 border border-white/10 bg-[#111111] p-6 lg:p-8">
             <h3 className="text-white mb-5" style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", fontWeight: 500 }}>
-              Credential Foundation
-            </h3>
-            <div className="flex flex-wrap gap-2.5 mb-6">
-              {credentials.map((credential) => (
-                <span
-                  key={credential}
-                  className="px-3 py-1.5 border border-[#D4AF37]/35 text-[#D4AF37]"
-                  style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", letterSpacing: "0.08em", textTransform: "uppercase" }}
-                >
-                  {credential}
-                </span>
-              ))}
-            </div>
-            <h4 className="text-white mb-3" style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.125rem" }}>
               Proof Points
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               {proofPoints.map((point) => (
                 <li

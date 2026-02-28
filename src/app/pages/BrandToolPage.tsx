@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import { Lock, ArrowRight, ChevronRight, ChevronLeft } from "lucide-react";
-
-const VALID_CODES = ["AXIOM2026", "BRAND001", "PARTNER"];
+import { BrandDecisionTool, type BrandBriefPayload } from "../components/BrandDecisionTool";
 
 // ── Carousel slides — each simulates a screen inside the Brand Decision Tool ──
 const slides = [
@@ -148,16 +147,16 @@ function MockScreen({ type }: { type: string }) {
   );
 }
 
-const steps_info = [
-  { label: "Services", action: () => {} },
-];
-
 export default function BrandToolPage() {
   const navigate = useNavigate();
+  const [clientName, setClientName] = useState("");
+  const [clientEmail, setClientEmail] = useState("");
+  const [clientCompany, setClientCompany] = useState("");
   const [code, setCode] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [shake, setShake] = useState(false);
   const [current, setCurrent] = useState(0);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Auto-advance every 3s
@@ -179,18 +178,91 @@ export default function BrandToolPage() {
   const prev = () => goTo((current - 1 + slides.length) % slides.length);
   const next = () => goTo((current + 1) % slides.length);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleAccessSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (VALID_CODES.includes(code.trim().toUpperCase())) {
-      alert("Access granted. The interactive tool is coming soon.");
-    } else {
-      setError(true);
+    setError(null);
+
+    if (!clientName.trim() || !clientEmail.trim() || !code.trim()) {
+      setError("Name, email, and access code are required.");
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/brand-tool/access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+
+      const data = (await res.json().catch(() => ({}))) as { error?: string; accessToken?: string };
+      if (!res.ok || !data.accessToken) {
+        throw new Error(data.error || "Access denied.");
+      }
+
+      setAccessToken(data.accessToken);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Invalid code. Please check with your advisor.");
       setShake(true);
       setTimeout(() => setShake(false), 500);
     }
   };
 
   const slide = slides[current];
+
+  const submitBrief = async (brief: BrandBriefPayload) => {
+    if (!accessToken) {
+      throw new Error("Access expired. Refresh and re-enter your code.");
+    }
+
+    const res = await fetch("/api/brand-tool/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({
+        clientName,
+        clientEmail,
+        clientCompany,
+        brief,
+      }),
+    });
+
+    const data = (await res.json().catch(() => ({}))) as { error?: string };
+    if (!res.ok) {
+      throw new Error(data.error || "Unable to submit brief.");
+    }
+  };
+
+  if (accessToken) {
+    return (
+      <div className="min-h-screen bg-[#0A0A0A] pt-24">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 mb-4">
+          <div className="border border-[#D4AF37]/30 bg-[#131314] px-5 py-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-[#D4AF37]" style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                Partner Session Active
+              </p>
+              <p className="text-white/70" style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.85rem" }}>
+                {clientName} · {clientEmail}{clientCompany ? ` · ${clientCompany}` : ""}
+              </p>
+            </div>
+            <button
+              onClick={() => setAccessToken(null)}
+              className="px-4 py-2 border border-white/20 text-white/70 hover:border-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors"
+              style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.75rem", letterSpacing: "0.04em", textTransform: "uppercase" }}
+            >
+              End Session
+            </button>
+          </div>
+        </div>
+        <BrandDecisionTool submitLabel="Submit Final Brief" onSubmitBrief={submitBrief} />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
@@ -353,12 +425,48 @@ export default function BrandToolPage() {
             This tool is available exclusively to active Axiom Advisory engagements.
             Enter the access code provided during your consultation to continue.
           </p>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleAccessSubmit} className="space-y-4">
+            <input
+              type="text"
+              value={clientName}
+              onChange={(e) => setClientName(e.target.value)}
+              placeholder="Client name"
+              className="w-full bg-transparent border px-4 py-3 text-white placeholder-white/20 outline-none transition-colors"
+              style={{
+                fontFamily: "'Barlow', sans-serif",
+                fontSize: "0.875rem",
+                borderColor: "rgba(255,255,255,0.12)",
+              }}
+            />
+            <input
+              type="email"
+              value={clientEmail}
+              onChange={(e) => setClientEmail(e.target.value)}
+              placeholder="Client email"
+              className="w-full bg-transparent border px-4 py-3 text-white placeholder-white/20 outline-none transition-colors"
+              style={{
+                fontFamily: "'Barlow', sans-serif",
+                fontSize: "0.875rem",
+                borderColor: "rgba(255,255,255,0.12)",
+              }}
+            />
+            <input
+              type="text"
+              value={clientCompany}
+              onChange={(e) => setClientCompany(e.target.value)}
+              placeholder="Company (optional)"
+              className="w-full bg-transparent border px-4 py-3 text-white placeholder-white/20 outline-none transition-colors"
+              style={{
+                fontFamily: "'Barlow', sans-serif",
+                fontSize: "0.875rem",
+                borderColor: "rgba(255,255,255,0.12)",
+              }}
+            />
             <div style={{ animation: shake ? "shake 0.4s ease" : "none" }}>
               <input
                 type="text"
                 value={code}
-                onChange={(e) => { setCode(e.target.value); setError(false); }}
+                onChange={(e) => { setCode(e.target.value); setError(null); }}
                 placeholder="Enter access code"
                 className="w-full bg-transparent border px-4 py-3 text-white placeholder-white/20 outline-none transition-colors"
                 style={{
@@ -372,7 +480,7 @@ export default function BrandToolPage() {
               />
               {error && (
                 <p className="text-red-400/70 text-xs mt-2" style={{ fontFamily: "'DM Mono', monospace" }}>
-                  Invalid code. Please check with your advisor.
+                  {error}
                 </p>
               )}
             </div>
@@ -412,6 +520,13 @@ export default function BrandToolPage() {
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
             Begin an engagement <ChevronRight size={13} />
+          </button>
+          <button
+            onClick={() => navigate("/brand-tool/admin")}
+            className="text-xs text-white/30 hover:text-[#D4AF37] transition-colors"
+            style={{ fontFamily: "'DM Mono', monospace", letterSpacing: "0.08em", textTransform: "uppercase" }}
+          >
+            Admin Portal
           </button>
         </div>
       </div>

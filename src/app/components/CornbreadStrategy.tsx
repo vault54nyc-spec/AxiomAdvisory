@@ -277,7 +277,7 @@ const CornbreadStrategy = () => {
                 <p className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold">The Future</p>
                 <div className="relative overflow-hidden shadow-lg">
                   <img
-                    src="https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/image.jpg"
+                    src="https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/enterprise.jpg?v=20260227"
                     alt="The Future of Cornbread"
                     className="w-full object-cover"
                   />

@@ -8,58 +8,58 @@ const services = [
   },
   {
     num: "02",
-    name: "Operations Infrastructure",
-    desc: "Streamlining how organizations run — SOPs, process documentation, template systems, and central knowledge repositories that keep teams aligned and operations scalable.",
-  },
-  {
-    num: "03",
-    name: "Strategy to Structure",
-    desc: "Translating high-level vision into organizational design, workflows, and accountability frameworks that drive measurable results.",
-  },
-  {
-    num: "04",
-    name: "End-to-End Operations",
-    desc: "Full-spectrum operational oversight — process architecture, vendor management, and cross-functional alignment from concept to execution.",
-  },
-  {
-    num: "05",
-    name: "Governance & Decision Architecture",
-    desc: "Governance models and decision-rights frameworks that enable clarity, speed, and institutional accountability at every level.",
-  },
-  {
-    num: "06",
-    name: "Digital Presence & Micro-Sites",
-    desc: "Purpose-built micro-sites, landing pages, and digital touchpoints that extend your brand's reach — fast, focused, and built without the overhead of a full rebuild.",
-  },
-  {
-    num: "07",
-    name: "Executive Communications",
-    desc: "Board presentations, stakeholder narratives, and executive messaging that move audiences and secure alignment.",
-  },
-  {
-    num: "08",
-    name: "Crisis Management",
-    desc: "Incident response protocols, communications playbooks, and continuity frameworks — built before disruption strikes.",
-  },
-  {
-    num: "09",
-    name: "Third-Party Risk",
-    desc: "Vendor governance, partner due diligence, and supply chain risk frameworks that protect the enterprise.",
-  },
-  {
-    num: "10",
-    name: "AI Governance & Compliance",
-    desc: "Responsible AI adoption policies, risk controls, and compliance structures aligned with emerging regulatory standards.",
-  },
-  {
-    num: "11",
     name: "Brand Infrastructure",
     desc: "The systems behind the brand — identity, voice, digital presence, and content architecture built to scale.",
   },
   {
-    num: "12",
+    num: "03",
     name: "Brand Decision Studio",
     desc: "An interactive strategic tool helping founders and executives choose positioning, visual direction, and go-to-market path.",
+  },
+  {
+    num: "04",
+    name: "Digital Presence & Micro-Sites",
+    desc: "Purpose-built micro-sites, landing pages, and digital touchpoints that extend your brand's reach — fast, focused, and built without the overhead of a full rebuild.",
+  },
+  {
+    num: "05",
+    name: "Strategy to Structure",
+    desc: "Translating high-level vision into organizational design, workflows, and accountability frameworks that drive measurable results.",
+  },
+  {
+    num: "06",
+    name: "End-to-End Operations",
+    desc: "Full-spectrum operational oversight — process architecture, vendor management, and cross-functional alignment from concept to execution.",
+  },
+  {
+    num: "07",
+    name: "Operations Infrastructure",
+    desc: "Streamlining how organizations run — SOPs, process documentation, template systems, and central knowledge repositories that keep teams aligned and operations scalable.",
+  },
+  {
+    num: "08",
+    name: "Governance & Decision Architecture",
+    desc: "Governance models and decision-rights frameworks that enable clarity, speed, and institutional accountability at every level.",
+  },
+  {
+    num: "09",
+    name: "Executive Communications",
+    desc: "Board presentations, stakeholder narratives, and executive messaging that move audiences and secure alignment.",
+  },
+  {
+    num: "10",
+    name: "Crisis Management",
+    desc: "Incident response protocols, communications playbooks, and continuity frameworks — built before disruption strikes.",
+  },
+  {
+    num: "11",
+    name: "Third-Party Risk",
+    desc: "Vendor governance, partner due diligence, and supply chain risk frameworks that protect the enterprise.",
+  },
+  {
+    num: "12",
+    name: "AI Governance & Compliance",
+    desc: "Responsible AI adoption policies, risk controls, and compliance structures aligned with emerging regulatory standards.",
   },
 ];
 

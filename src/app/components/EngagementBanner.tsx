@@ -11,7 +11,7 @@ export function EngagementBanner() {
           <p className="text-[#0A0A0A]/60 mt-1 text-sm" style={{ fontFamily: "'Barlow', sans-serif" }}>Let's architect something that lasts.</p>
         </div>
         <div className="flex flex-wrap gap-4">
-          <button onClick={() => navigate("/contact")}
+          <button onClick={() => { window.location.href = "mailto:engage@axiomadvisorypartners.co"; }}
             className="px-8 py-3.5 bg-[#0A0A0A] text-white hover:bg-[#1a1a1a] transition-colors"
             style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.04em" }}>
             Begin Engagement →

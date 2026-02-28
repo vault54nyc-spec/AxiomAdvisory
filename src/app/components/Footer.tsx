@@ -11,7 +11,6 @@ export function Footer() {
     { label: "Work", path: "/work" },
     { label: "Brand Tool", path: "/brand-tool" },
     { label: "For Our Partners", path: "/partners" },
-    { label: "Contact", path: "/contact" },
   ];
 
   return (

@@ -184,7 +184,7 @@ export function Hero() {
             </button>
 
             <button
-              onClick={() => navigate("/contact")}
+              onClick={() => { window.location.href = "mailto:engage@axiomadvisorypartners.co"; }}
               style={{
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: "clamp(0.7rem, 1vw, 0.82rem)",

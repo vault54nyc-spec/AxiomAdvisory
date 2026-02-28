@@ -22,11 +22,6 @@ export default function PartnersPage() {
           {partners.map((p) => (
             <div key={p.path} onClick={() => navigate(p.path)}
               className="group relative border border-white/8 bg-white/[0.03] p-8 cursor-pointer hover:border-[#D4AF37]/40 hover:bg-white/[0.06] transition-all">
-              {p.active && (
-                <div className="absolute top-5 right-5 px-2.5 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/30">
-                  <span className="text-[#D4AF37] text-[9px] font-bold uppercase tracking-[0.15em]">Active</span>
-                </div>
-              )}
               <div className="flex items-start justify-between mb-8">
                 <div className="w-14 h-14 flex items-center justify-center overflow-hidden bg-white/5">
                   <img src={p.logoImg} alt={p.name} className="w-full h-full object-contain" />
@@ -36,6 +31,11 @@ export default function PartnersPage() {
                   <Lock size={13} className="text-white/20 group-hover:text-[#D4AF37] transition-colors" />
                 </div>
               </div>
+              {p.active && (
+                <div className="inline-flex mb-5 px-2.5 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/30">
+                  <span className="text-[#D4AF37] text-[9px] font-bold uppercase tracking-[0.15em]">Active</span>
+                </div>
+              )}
               <div className="space-y-1 mb-8">
                 <h2 className="text-xl font-bold text-white group-hover:text-[#D4AF37] transition-colors" style={{ fontFamily: "'Playfair Display', serif" }}>{p.name}</h2>
                 <p className="text-[10px] uppercase tracking-widest text-[#D4AF37]/70 font-bold" style={{ fontFamily: "'DM Mono', monospace" }}>{p.descriptor}</p>

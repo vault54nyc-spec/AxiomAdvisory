@@ -20,6 +20,8 @@ const pillars = [
   { label: "Accountability", desc: "We are measured by outcomes, not deliverables. If the work does not move the needle, it does not leave our desk." },
 ];
 
+const founderCredentials = ["PMP", "CCOS", "CFE", "EMBA", "16+ years Fortune 500 operations"];
+
 export function About() {
   const { ref, inView } = useInView();
   return (
@@ -73,6 +75,25 @@ export function About() {
                 enterprise portfolio oversight, and national brand campaigns, he operates at the intersection of
                 execution and vision — embedding directly with leadership teams to drive outcomes that last.
               </p>
+              <div className="mt-4">
+                <p
+                  className="text-[10px] uppercase tracking-[0.16em] text-[#0A0A0A]/45 mb-2"
+                  style={{ fontFamily: "'DM Mono', monospace" }}
+                >
+                  Credentials
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {founderCredentials.map((credential) => (
+                    <span
+                      key={credential}
+                      className="px-2.5 py-1 border border-[#D4AF37]/45 text-[#0A0A0A]"
+                      style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase" }}
+                    >
+                      {credential}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 

@@ -13,10 +13,7 @@ const serviceOptions = [
   "Brand Decision Studio",
 ];
 
-// ACTION REQUIRED: Replace with your Formspree form ID
-// 1. Go to https://formspree.io and create a free account
-// 2. Create a new form pointed at: engage@axiomadvisorypartners.co
-// 3. Replace "YOUR_FORMSPREE_ID" below with your form ID (e.g. "xpzgkqrb")
+const CONTACT_INBOX_EMAIL = "engage@axiomadvisorypartners.co";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mqedjekk";
 
 export function Contact() {
@@ -28,10 +25,18 @@ export function Contact() {
     setStatus("submitting");
 
     try {
+      const payload = {
+        ...form,
+        _replyto: form.email,
+        _subject: `New Axiom contact inquiry${form.service ? `: ${form.service}` : ""}`,
+        _to: CONTACT_INBOX_EMAIL,
+        contactInbox: CONTACT_INBOX_EMAIL,
+      };
+
       const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       if (res.ok) {
@@ -88,7 +93,7 @@ export function Contact() {
                   Office
                 </p>
                 <p className="text-[#0A0A0A]" style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem" }}>
-                  Dallas–Fort Worth, TX
+                  Jersey City, NJ / New York City, NY
                 </p>
               </div>
               <div>

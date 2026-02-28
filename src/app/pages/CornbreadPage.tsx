@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Lock, ArrowRight, Instagram, TrendingUp, Eye, EyeOff, Calendar, Target, AlertTriangle, BarChart3, ChevronRight } from "lucide-react";
+import { Lock, ArrowRight, Instagram, Eye, EyeOff, Calendar, Target, AlertTriangle, BarChart3, ChevronRight } from "lucide-react";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
@@ -7,7 +7,9 @@ import {
 } from "recharts";
 
 const PASSCODE = "cornbread123";
-const cornbreadImg = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663031559393/pOwIRqJYLzkEgWtK.jpg";
+const cornbreadImg = "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/enterprise.jpg?v=20260227";
+const figmaMockupUrl = "https://www.figma.com/make/PfDtlahWZ6h9IHLQ9x0p35/Instagram-Profile-Refresh?fullscreen=1&t=yBzWuVIP1Yk1m5Vu-1";
+const figmaEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(figmaMockupUrl)}`;
 
 /* ── Chart color palette ── */
 const GOLD = "#D4AF37";
@@ -507,49 +509,24 @@ export default function CornbreadPage() {
                 <p className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold flex items-center gap-2">
                   <Instagram size={13} /> Instagram Profile Refresh
                 </p>
-                <div className="bg-[#0A0A0A] p-1.5 rounded-[2rem] shadow-2xl max-w-[280px] mx-auto border-[6px] border-[#1A1A1A]">
-                  <div className="bg-white rounded-[1.6rem] overflow-hidden">
-                    <div className="px-4 py-3 flex items-center justify-between border-b border-gray-100">
-                      <span className="font-bold text-xs">cornbreadsoul</span>
-                      <div className="flex gap-2 opacity-40">
-                        <div className="w-3.5 h-3.5 border border-black rounded-sm" />
-                        <div className="w-3.5 h-3.5 border border-black rounded-full" />
-                      </div>
-                    </div>
-                    <div className="p-3 flex gap-3 items-center">
-                      <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-yellow-500 to-amber-800 p-0.5 shrink-0">
-                        <div className="w-full h-full rounded-full bg-white flex items-center justify-center font-serif text-xl font-bold text-[#8B4513]">C</div>
-                      </div>
-                      <div className="flex flex-1 justify-around text-center">
-                        <div><p className="font-bold text-xs">482</p><p className="text-[9px] text-gray-400">Posts</p></div>
-                        <div><p className="font-bold text-xs">127K</p><p className="text-[9px] text-gray-400">Followers</p></div>
-                        <div><p className="font-bold text-xs">1,247</p><p className="text-[9px] text-gray-400">Following</p></div>
-                      </div>
-                    </div>
-                    <div className="px-3 pb-2 space-y-0.5">
-                      <p className="font-bold text-[11px]">Cornbread Soul</p>
-                      <p className="text-[10px] text-gray-500">Farm-to-Soul Restaurant</p>
-                      <p className="text-[10px]">Natural ingredients | Farm-to-table</p>
-                      <p className="text-[10px]">4 locations | Franchising 2026</p>
-                      <p className="text-[10px] text-blue-800 font-medium">cornbreadsoul.com/franchise</p>
-                    </div>
-                    <div className="px-3 py-2 flex gap-1.5">
-                      <div className="flex-1 bg-gray-100 py-1 rounded text-[9px] font-bold text-center">Follow</div>
-                      <div className="flex-1 bg-gray-100 py-1 rounded text-[9px] font-bold text-center">Message</div>
-                    </div>
-                    <div className="grid grid-cols-3 gap-px mt-1">
-                      {["bg-amber-100","bg-amber-200","bg-yellow-100","bg-orange-100","bg-amber-300","bg-yellow-200"].map((bg, i) => (
-                        <div key={i} className={`aspect-square ${bg} relative`}>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                          <div className="absolute bottom-1 left-1 text-[7px] text-white flex items-center gap-0.5">
-                            <TrendingUp size={6} /> {[24.5,18.2,12.8,31.1,22.6,45.3][i]}K
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                <div className="bg-[#0A0A0A] p-2 rounded-2xl shadow-2xl max-w-[360px] mx-auto border border-[#1F1F1F]">
+                  <div className="relative overflow-hidden rounded-xl bg-white" style={{ aspectRatio: "9 / 16" }}>
+                    <iframe
+                      src={figmaEmbedUrl}
+                      title="Instagram Profile Refresh Figma Mockup"
+                      className="absolute inset-0 w-full h-full border-0"
+                      allowFullScreen
+                      loading="lazy"
+                    />
                   </div>
                 </div>
-                <p className="text-[11px] text-gray-400 text-center italic">Proposed digital presence architecture</p>
+                <p className="text-[11px] text-gray-400 text-center italic">
+                  Live Figma embed.
+                  {" "}
+                  <a href={figmaMockupUrl} target="_blank" rel="noreferrer" className="text-[#D4AF37] not-italic">
+                    Open in Figma
+                  </a>
+                </p>
               </div>
 
               {/* The Future image */}
