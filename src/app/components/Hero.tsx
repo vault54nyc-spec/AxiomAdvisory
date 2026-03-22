@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-const heroImg = "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/image.jpeg";
+const heroImg = "https://pub-1312916bb6854ae6baff9ad5ab8e55db.r2.dev/Firefly_Gemini%20Flash%20(1).png";
 
 export function Hero() {
   const [visible, setVisible] = useState(false);
