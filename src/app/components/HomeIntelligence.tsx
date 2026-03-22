@@ -243,11 +243,11 @@ export function HomeIntelligence() {
                 Next Actions
               </p>
               <button
-                onClick={() => navigate("/services")}
+                onClick={() => navigate("/architecture")}
                 className="w-full text-left px-3 py-2.5 border border-[#0A0A0A]/15 hover:border-[#D4AF37]/70 hover:bg-[#FAFAFA] transition-colors"
                 style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.9rem", fontWeight: 600 }}
               >
-                Explore Services
+                Explore Architecture
               </button>
               <button
                 onClick={() => navigate("/brand-tool")}

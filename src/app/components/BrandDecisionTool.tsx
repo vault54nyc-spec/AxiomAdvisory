@@ -156,7 +156,7 @@ const categories: DecisionCategory[] = [
         title: "The Authority Site",
         subtitle: "5 Pages",
         description: "Comprehensive long-scroll positioning with services, credentials, proof, and contact pathways.",
-        tags: ["Home/Services/About/Work/Contact", "Credibility"],
+        tags: ["Home/Architecture/About/Work/Contact", "Credibility"],
       },
       {
         value: 2,
@@ -264,17 +264,17 @@ const voiceInsights: Record<1 | 2 | 3, { fit: string; copy: string; keywords: st
   1: {
     fit: "Best for enterprise-adjacent clients seeking precise strategic counsel with high trust requirements.",
     keywords: ["Precision", "Restraint", "Gravitas", "Institutional"],
-    copy: "Axiom Advisory Partners provides senior-level strategic counsel to leadership teams navigating complexity.",
+    copy: "Axiom Executive Advisory provides senior-level strategic counsel to leadership teams navigating complexity.",
   },
   2: {
     fit: "Ideal for growth-stage operators who need embedded execution support, not advisory memos.",
     keywords: ["Execution", "Embedded", "Outcomes", "Pragmatic"],
-    copy: "Axiom Advisory Partners embeds with leadership teams to bridge strategy and execution until the work is done.",
+    copy: "Axiom Executive Advisory embeds with leadership teams to bridge strategy and execution until the work is done.",
   },
   3: {
     fit: "Strong for governance-led mandates where compliance, risk architecture, and crisis readiness are core buying triggers.",
     keywords: ["Governance", "Compliance", "Standards", "Crisis-Ready"],
-    copy: "Axiom Advisory Partners builds governance and compliance infrastructure organizations can no longer operate without.",
+    copy: "Axiom Executive Advisory builds governance and compliance infrastructure organizations can no longer operate without.",
   },
 };
 
@@ -347,7 +347,7 @@ export function BrandDecisionTool({ submitLabel, onSubmitBrief }: BrandDecisionT
   });
 
   const buildTextSummary = () => [
-      "AXIOM ADVISORY PARTNERS - BRAND BRIEF",
+      "AXIOM EXECUTIVE ADVISORY - BRAND BRIEF",
       "=".repeat(45),
       "",
       `Brand Direction: ${summaryMap.voice}`,

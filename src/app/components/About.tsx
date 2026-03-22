@@ -50,7 +50,7 @@ export function About() {
             </div>
 
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "1rem", lineHeight: 1.85, color: "rgba(10,10,10,0.65)" }}>
-              Axiom Advisory Partners LLC is a boutique strategic advisory firm delivering institutional-grade counsel
+              Axiom Executive Advisory, LLC is a boutique strategic advisory firm delivering institutional-grade counsel
               with the agility of a trusted partner. We embed where it matters — at the intersection of strategy,
               operations, and organizational leadership.
             </p>

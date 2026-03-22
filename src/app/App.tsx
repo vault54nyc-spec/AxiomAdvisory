@@ -14,6 +14,8 @@ import BrandToolAdminPage from "./pages/BrandToolAdminPage";
 import PartnersPage from "./pages/PartnersPage";
 import CornbreadPage from "./pages/CornbreadPage";
 import LockedClientPage from "./pages/LockedClientPage";
+import K2KPage from "./pages/K2KPage";
+import AxiomAdminPage from "./pages/AxiomAdminPage";
 
 function ScrollToTopOnRouteChange() {
   const location = useLocation();
@@ -47,6 +49,10 @@ export default function App() {
         <Route path="/partners/walmart" element={<LockedClientPage name="Walmart" code="walmart" />} />
         <Route path="/partners/rori-project" element={<LockedClientPage name="R.O.R.I. Project" code="rori" />} />
         <Route path="/partners/nphc-hudson" element={<LockedClientPage name="NPHC of Hudson County" code="nphc" />} />
+        <Route path="/partners/k2k" element={<LockedClientPage name="K2K College Prep Services" code="k2k" redirect="/partners/k2k/portal" />} />
+        <Route path="/partners/k2k/portal" element={<K2KPage />} />
+        <Route path="/axiom-admin" element={<LockedClientPage name="Axiom Internal" code="axiomadmin" redirect="/axiom-admin/dashboard" />} />
+        <Route path="/axiom-admin/dashboard" element={<AxiomAdminPage />} />
       </Routes>
       <Footer />
     </div>

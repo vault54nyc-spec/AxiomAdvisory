@@ -5,10 +5,8 @@ export function Footer() {
 
   const links = [
     { label: "Home", path: "/" },
-    { label: "Services", path: "/services" },
-    { label: "Architecture", path: "/architecture" },
     { label: "About", path: "/about" },
-    { label: "Work", path: "/work" },
+    { label: "Architecture", path: "/architecture" },
     { label: "Brand Tool", path: "/brand-tool" },
     { label: "For Our Partners", path: "/partners" },
   ];
@@ -30,7 +28,7 @@ export function Footer() {
               className="text-white/60"
               style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.08em" }}
             >
-              AXIOM ADVISORY PARTNERS
+              AXIOM EXECUTIVE ADVISORY
             </span>
           </div>
 
@@ -52,7 +50,7 @@ export function Footer() {
               className="text-white/30"
               style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", letterSpacing: "0.08em" }}
             >
-              Axiom Advisory Partners LLC
+              Axiom Executive Advisory, LLC
             </p>
             <p
               className="text-white/20 mt-1"

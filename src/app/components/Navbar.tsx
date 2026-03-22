@@ -38,10 +38,8 @@ export function Navbar() {
 
   const navLinks = [
     { label: "Home", path: "/" },
-    { label: "Services", path: "/services" },
-    { label: "Architecture", path: "/architecture" },
     { label: "About", path: "/about" },
-    { label: "Work", path: "/work" },
+    { label: "Architecture", path: "/architecture" },
     { label: "Brand Tool", path: "/brand-tool" },
     { label: "For Our Partners", path: "/partners" },
   ];
@@ -86,7 +84,7 @@ export function Navbar() {
             {!logoFailed ? (
               <img
                 src={logoUrl}
-                alt="Axiom Advisory Partners"
+                alt="Axiom Executive Advisory"
                 className="h-7 sm:h-8 w-auto transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]"
                 onError={() => setLogoFailed(true)}
               />
@@ -101,7 +99,7 @@ export function Navbar() {
               className="font-semibold tracking-wide transition-colors"
               style={{ fontFamily: "'Barlow', sans-serif", fontSize: "0.68rem", color: isHome ? "rgba(255,255,255,0.85)" : "#0A0A0A", letterSpacing: "0.06em" }}
             >
-              AXIOM ADVISORY
+              AXIOM EXECUTIVE ADVISORY
             </span>
           </button>
 

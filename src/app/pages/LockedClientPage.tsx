@@ -5,9 +5,10 @@ import { Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 interface Props {
   name: string;
   code: string;
+  redirect?: string;
 }
 
-export default function LockedClientPage({ name, code }: Props) {
+export default function LockedClientPage({ name, code, redirect }: Props) {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
@@ -15,9 +16,12 @@ export default function LockedClientPage({ name, code }: Props) {
 
   const handleUnlock = () => {
     if (input.toLowerCase() === code.toLowerCase()) {
-      // For now all non-Cornbread clients show a "coming soon" state
       setError(false);
-      alert("Access granted. Client portal coming soon.");
+      if (redirect) {
+        navigate(redirect);
+      } else {
+        alert("Access granted. Client portal coming soon.");
+      }
     } else {
       setError(true);
     }

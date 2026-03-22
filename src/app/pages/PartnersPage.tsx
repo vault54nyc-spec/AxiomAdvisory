@@ -6,6 +6,7 @@ const partners = [
   { number: "02", name: "R.O.R.I. Project", descriptor: "Nonprofit", detail: "Organizational infrastructure & governance", path: "/partners/rori-project", logoImg: "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/IMG_5814.jpeg" },
   { number: "03", name: "NPHC of Hudson County", descriptor: "Nonprofit / Civic", detail: "Operations & communications advisory", path: "/partners/nphc-hudson", logoImg: "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/IMG_5815.jpeg" },
   { number: "04", name: "Cornbread Soul", descriptor: "Fast-Casual / Hospitality", detail: "Brand & operational strategy", path: "/partners/cornbread", logoImg: "https://pub-d271817665684c82ae385a9c153ff8fa.r2.dev/IMG_5816.jpeg", active: true },
+  { number: "05", name: "K2K College Prep Services", descriptor: "HBCU Education Consulting", detail: "Full-scale portal build, brand identity & digital infrastructure", path: "/partners/k2k", logoImg: "", active: true },
 ];
 
 export default function PartnersPage() {
@@ -24,7 +25,11 @@ export default function PartnersPage() {
               className="group relative border border-white/8 bg-white/[0.03] p-8 cursor-pointer hover:border-[#D4AF37]/40 hover:bg-white/[0.06] transition-all">
               <div className="flex items-start justify-between mb-8">
                 <div className="w-14 h-14 flex items-center justify-center overflow-hidden bg-white/5">
-                  <img src={p.logoImg} alt={p.name} className="w-full h-full object-contain" />
+                  {p.logoImg ? (
+                    <img src={p.logoImg} alt={p.name} className="w-full h-full object-contain" />
+                  ) : (
+                    <span className="text-[#D4AF37] text-xs font-bold tracking-widest" style={{ fontFamily: "'DM Mono', monospace" }}>K2K</span>
+                  )}
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-[10px] uppercase tracking-[0.2em] text-white/20 font-bold" style={{ fontFamily: "'DM Mono', monospace" }}>{p.number}</span>

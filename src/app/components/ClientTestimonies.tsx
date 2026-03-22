@@ -51,7 +51,7 @@ export function ClientTestimonies() {
         setActiveIndex((prev) => (prev + 1) % testimonies.length);
         setVisible(true);
       }, 420);
-    }, 4600);
+    }, 7600);
 
     return () => {
       clearInterval(interval);

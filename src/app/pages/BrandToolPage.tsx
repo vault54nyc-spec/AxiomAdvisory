@@ -270,7 +270,7 @@ export default function BrandToolPage() {
       <div className="pt-36 pb-16 px-6 lg:px-16 max-w-[1200px] mx-auto">
         <div className="max-w-2xl space-y-6">
           <p className="text-[11px] uppercase tracking-[0.22em] text-[#D4AF37] font-bold" style={{ fontFamily: "'DM Mono', monospace" }}>
-            Axiom Advisory Partners LLC — Exclusive Tool
+            Axiom Executive Advisory — Exclusive Tool
           </p>
           <h1 className="text-white leading-tight" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 4vw, 3.25rem)", fontWeight: 400 }}>
             The Brand<br />

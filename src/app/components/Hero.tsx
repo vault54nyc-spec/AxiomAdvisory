@@ -35,7 +35,7 @@ export function Hero() {
       >
         <img
           src={heroImg}
-          alt="Christopher DeMarkus — Axiom Advisory Partners"
+          alt="Christopher DeMarkus — Axiom Executive Advisory"
           className="w-full h-full"
           style={{ objectFit: "cover", objectPosition: "center 35%" }}
           loading="eager"
@@ -46,7 +46,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(15,15,15,0.85) 0%, rgba(15,15,15,0.3) 35%, transparent 65%)",
+              "linear-gradient(to top, rgba(15,15,15,0.78) 0%, rgba(15,15,15,0.2) 24%, transparent 52%)",
           }}
         />
       </div>
@@ -55,9 +55,9 @@ export function Hero() {
       <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
-          height: "55%",
+          height: "50%",
           background:
-            "linear-gradient(to top, rgba(12,12,12,0.95) 0%, rgba(12,12,12,0.6) 40%, transparent 100%)",
+            "linear-gradient(to top, rgba(12,12,12,0.95) 0%, rgba(12,12,12,0.5) 24%, transparent 78%)",
         }}
       />
 
@@ -86,9 +86,7 @@ export function Hero() {
                 transform: visible ? "translateY(0)" : "translateY(14px)",
                 transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
               }}
-            >
-              Axiom Advisory Partners
-            </p>
+            >Axiom Executive Advisory</p>
 
             {/* Headline — "Strategic counsel." */}
             <h1
@@ -140,7 +138,7 @@ export function Hero() {
                 transition: "opacity 0.6s ease 0.95s, transform 0.6s ease 0.95s",
               }}
             >
-              Axiom Advisory Partners delivers strategic advisory and operational
+              Axiom Executive Advisory delivers strategic advisory and operational
               architecture for organizations navigating complexity at scale.
             </p>
           </div>
@@ -155,7 +153,7 @@ export function Hero() {
             }}
           >
             <button
-              onClick={() => navigate("/services")}
+              onClick={() => navigate("/architecture")}
               style={{
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: "clamp(0.7rem, 1vw, 0.82rem)",
@@ -180,7 +178,7 @@ export function Hero() {
                 el.style.color = "#D4AF37";
               }}
             >
-              Explore Services
+              Explore Architecture
             </button>
 
             <button
