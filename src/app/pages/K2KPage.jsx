@@ -5,7 +5,7 @@
 // Ref: k_2_k_advisory_mini_app.jsx (design system source)
 // ============================================================
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function K2KPartnerPortalPage() {
 
@@ -19,6 +19,17 @@ export default function K2KPartnerPortalPage() {
     serif:     { fontFamily: '"Playfair Display", serif' },
     sans:      { fontFamily: '"DM Sans", system-ui' },
     border:    "border border-[#C9973A33]",
+  };
+
+  // ── Welcome Modal (first-visit only) ─────────────────────
+  const [showWelcome, setShowWelcome] = useState(false);
+  useEffect(() => {
+    const seen = localStorage.getItem("k2k_portal_welcomed");
+    if (!seen) setShowWelcome(true);
+  }, []);
+  const dismissWelcome = () => {
+    localStorage.setItem("k2k_portal_welcomed", "1");
+    setShowWelcome(false);
   };
 
   // ── Calculator State ──────────────────────────────────────
@@ -384,9 +395,93 @@ export default function K2KPartnerPortalPage() {
   const savings     = fullTotal - grandTotal;
   const budgetPct   = Math.min(100, Math.round((grandTotal / fullTotal) * 100));
 
+  const welcomeSteps = [
+    {
+      n: "01",
+      label: "Your Engagement Overview",
+      body: "At the top you'll find your project stats — full scope value, timeline, phases, and current status. Think of it as your at-a-glance dashboard.",
+    },
+    {
+      n: "02",
+      label: "Site Audit & Recommendations",
+      body: "We documented 15 specific gaps in your current Wix presence. Each one has a severity rating and Axiom's proposed recommendation for how we'd address it in the build.",
+    },
+    {
+      n: "03",
+      label: "Platform Architecture",
+      body: "This section maps out every page, portal module, and admin view we'd build — so you can see exactly what the finished platform would look like before a single line of code is written.",
+    },
+    {
+      n: "04",
+      label: "Budget & Scope Calculator",
+      body: "This is your custom scope tool. Every service line is itemized and optional (except Technical Infrastructure, which everything runs on). Select only what you need — your total updates in real time.",
+    },
+    {
+      n: "05",
+      label: "Milestones & Next Steps",
+      body: "Your engagement milestones and payment schedule are outlined here. Nothing kicks off until your MSA and SOW are executed — we'll walk through those together.",
+    },
+  ];
+
   // ─────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-[#2A2A2A]" style={t.sans}>
+
+      {/* ── Welcome Modal ──────────────────────────────────── */}
+      {showWelcome && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0D1B2A]/80 backdrop-blur-sm">
+          <div className="relative w-full max-w-[560px] bg-[#FAF7F2] rounded-2xl shadow-2xl overflow-hidden">
+
+            {/* Gold top bar */}
+            <div className="h-1 w-full bg-[#C9973A]" />
+
+            <div className="p-7 md:p-9">
+              {/* Header */}
+              <div className={`${t.smallMeta} text-[#C9973A] mb-3`} style={t.sans}>
+                Axiom Executive Advisory LLC · K2K College Prep Services
+              </div>
+              <h2 className="text-[24px] md:text-[30px] leading-[1.2] font-semibold text-[#0D1B2A] mb-2" style={t.serif}>
+                Welcome to your client portal.
+              </h2>
+              <p className="text-[14px] leading-6 text-[#555] mb-6">
+                This is your dedicated space to review everything Axiom has prepared for you — from our site audit findings to your full proposed scope and budget. Here's a quick orientation so you know where to find everything.
+              </p>
+
+              {/* Steps */}
+              <div className="space-y-3 mb-7">
+                {welcomeSteps.map((s) => (
+                  <div key={s.n} className="flex gap-4 items-start">
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#0D1B2A] text-[#E4B96A] text-[10px] tracking-widest font-semibold flex items-center justify-center">
+                      {s.n}
+                    </span>
+                    <div>
+                      <div className="text-[13px] font-semibold text-[#0D1B2A] leading-5">{s.label}</div>
+                      <div className="text-[13px] text-[#666] leading-5 mt-[2px]">{s.body}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Note about pricing */}
+              <div className="rounded-xl bg-[#0D1B2A] text-[#FAF7F2] p-4 mb-6">
+                <div className={`${t.smallMeta} text-[#E4B96A] mb-1`}>A note on the numbers</div>
+                <p className="text-[13px] text-[#D6C9A8] leading-[1.6]">
+                  Don't let the total scope figure overwhelm you — it represents everything we could build. Not everything is required for where you are right now. We'll work through the budget calculator together and scope this to exactly what you need. Additional services can always be added later as K2K grows.
+                </p>
+              </div>
+
+              {/* CTA */}
+              <button
+                onClick={dismissWelcome}
+                className="w-full py-3 rounded-xl bg-[#0D1B2A] text-[#FAF7F2] text-[13px] tracking-widest uppercase font-semibold hover:bg-[#1a2d42] transition-colors"
+              >
+                Got it — take me to the portal
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <main className="max-w-[1180px] mx-auto px-6 py-8 space-y-10">
 
 
