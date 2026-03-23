@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { ExternalLink, Clock, AlertCircle, Lock, Unlock, Send, FileText, ChevronDown, ChevronUp, CheckCircle, Edit3 } from "lucide-react";
 
@@ -185,6 +185,37 @@ export default function AxiomAdminPage() {
     setEngagements(prev => prev.map(eng =>
       eng.id === engId ? { ...eng, agreementsSent: true } : eng
     ));
+  };
+
+  // ── K2K Portal Activity (read from localStorage — same-device proxy until Supabase) ──
+  const [k2kActivity, setK2kActivity] = useState({
+    firstAccess: null as string | null,
+    lastAccess: null as string | null,
+    scopeSelections: null as string[] | null,
+    availabilitySubmitted: null as string | null,
+    availabilitySlots: null as string[] | null,
+  });
+  const [callConfirmed, setCallConfirmed] = useState(false);
+  const [callDateTime, setCallDateTime] = useState("");
+
+  useEffect(() => {
+    const first = localStorage.getItem("k2k_first_access");
+    const last = localStorage.getItem("k2k_last_access");
+    const scope = localStorage.getItem("k2k_scope_selections");
+    const submitted = localStorage.getItem("k2k_availability_submitted");
+    const slots = localStorage.getItem("k2k_availability_slots");
+    setK2kActivity({
+      firstAccess: first ? new Date(first).toLocaleString() : null,
+      lastAccess: last ? new Date(last).toLocaleString() : null,
+      scopeSelections: scope ? JSON.parse(scope) : null,
+      availabilitySubmitted: submitted ? new Date(submitted).toLocaleString() : null,
+      availabilitySlots: slots ? JSON.parse(slots) : null,
+    });
+  }, []);
+
+  const fmtSlot = (key: string) => {
+    const d = new Date(key);
+    return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
   };
 
   const pendingCount = engagements.filter(e => e.status === "pending").length;
@@ -529,6 +560,114 @@ export default function AxiomAdminPage() {
                         </div>
                       </div>
                     </div>
+
+                    {/* ── K2K Portal Activity Panel ── */}
+                    {eng.id === "AXM-K2K-2026-001" && (
+                      <div className="px-6 md:px-8 py-6 border-t border-white/6 space-y-5">
+                        <p className="text-[9px] uppercase tracking-widest text-[#C9973A]/60" style={MONO}>
+                          Client Portal Activity · Tina
+                        </p>
+
+                        {/* Status checklist */}
+                        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-3">
+                          {[
+                            {
+                              label: "Portal Accessed",
+                              value: k2kActivity.firstAccess
+                                ? `First: ${k2kActivity.firstAccess}`
+                                : "Not yet visited",
+                              done: !!k2kActivity.firstAccess,
+                            },
+                            {
+                              label: "Scope Selections Saved",
+                              value: k2kActivity.scopeSelections
+                                ? `${k2kActivity.scopeSelections.length} services selected`
+                                : "No selections saved",
+                              done: !!k2kActivity.scopeSelections,
+                            },
+                            {
+                              label: "Availability Submitted",
+                              value: k2kActivity.availabilitySubmitted
+                                ? k2kActivity.availabilitySubmitted
+                                : "Not yet submitted",
+                              done: !!k2kActivity.availabilitySubmitted,
+                            },
+                            {
+                              label: "Call Confirmed",
+                              value: callConfirmed ? callDateTime || "Confirmed" : "Pending submission",
+                              done: callConfirmed,
+                            },
+                          ].map((item) => (
+                            <div
+                              key={item.label}
+                              className={`p-4 border ${item.done ? "border-[#C9973A]/30 bg-[#C9973A]/5" : "border-white/6 bg-white/[0.02]"}`}
+                            >
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${item.done ? "bg-[#C9973A]" : "bg-white/15"}`} />
+                                <p className="text-[9px] uppercase tracking-widest text-white/30" style={MONO}>{item.label}</p>
+                              </div>
+                              <p className={`text-[11px] leading-4 ${item.done ? "text-white/60" : "text-white/20"}`} style={SANS}>
+                                {item.value}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Available slots submitted by Tina */}
+                        {k2kActivity.availabilitySlots && k2kActivity.availabilitySlots.length > 0 && (
+                          <div>
+                            <p className="text-[9px] uppercase tracking-widest text-white/25 mb-2" style={MONO}>
+                              Tina's Available Times
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {k2kActivity.availabilitySlots.map((key) => (
+                                <span
+                                  key={key}
+                                  className="text-[10px] px-3 py-1 border border-[#C9973A]/25 text-[#C9973A]/60 bg-[#C9973A]/5"
+                                  style={MONO}
+                                >
+                                  {fmtSlot(key)}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Confirm call */}
+                        {k2kActivity.availabilitySubmitted && !callConfirmed && (
+                          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                            <input
+                              type="text"
+                              placeholder="e.g. Mon Mar 24 · 6:30 PM CT"
+                              value={callDateTime}
+                              onChange={(e) => setCallDateTime(e.target.value)}
+                              className="flex-1 bg-white/5 border border-white/10 text-white/60 text-[11px] px-3 py-2 placeholder:text-white/20 outline-none"
+                              style={MONO}
+                            />
+                            <button
+                              onClick={() => callDateTime.trim() && setCallConfirmed(true)}
+                              className="flex-shrink-0 px-4 py-2 text-[10px] uppercase tracking-widest border border-[#C9973A]/40 text-[#C9973A]/70 hover:border-[#C9973A]/70 hover:text-[#C9973A] transition-colors"
+                              style={MONO}
+                            >
+                              Confirm Call
+                            </button>
+                          </div>
+                        )}
+
+                        {callConfirmed && (
+                          <div className="flex items-center gap-2">
+                            <CheckCircle size={11} className="text-[#C9973A]/60" />
+                            <p className="text-[11px] text-[#C9973A]/60" style={SANS}>
+                              Call confirmed: <span className="font-semibold">{callDateTime}</span>
+                            </p>
+                          </div>
+                        )}
+
+                        <p className="text-[9px] text-white/15 leading-relaxed" style={SANS}>
+                          ⚠ Activity data reads from same-device localStorage. Full cross-device tracking activates once Supabase backend is connected.
+                        </p>
+                      </div>
+                    )}
 
                     {/* ── Access Code ── */}
                     <div className="px-6 md:px-8 py-4 flex items-center gap-3">

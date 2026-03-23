@@ -26,6 +26,11 @@ export default function K2KPartnerPortalPage() {
   useEffect(() => {
     const seen = localStorage.getItem("k2k_portal_welcomed");
     if (!seen) setShowWelcome(true);
+    // Log access for admin tracking
+    if (!localStorage.getItem("k2k_first_access")) {
+      localStorage.setItem("k2k_first_access", new Date().toISOString());
+    }
+    localStorage.setItem("k2k_last_access", new Date().toISOString());
   }, []);
   const dismissWelcome = () => {
     localStorage.setItem("k2k_portal_welcomed", "1");
@@ -34,10 +39,55 @@ export default function K2KPartnerPortalPage() {
 
   // ── Calculator State ──────────────────────────────────────
   const ALL_IDS = ['tech', 'brand', 'website', 'portal', 'admin', 'qa', 'support', 'pm'];
-  const [selectedIds, setSelectedIds] = useState(() => new Set(ALL_IDS));
+  const [selectedIds, setSelectedIds] = useState(() => {
+    try {
+      const saved = localStorage.getItem("k2k_scope_selections");
+      return saved ? new Set(JSON.parse(saved)) : new Set(ALL_IDS);
+    } catch { return new Set(ALL_IDS); }
+  });
   const [expandedId, setExpandedId]   = useState(null);
   const [expandedFinding, setExpandedFinding] = useState(null);
   const toggleFinding = (n) => setExpandedFinding(prev => prev === n ? null : n);
+
+  // Save selections whenever they change
+  useEffect(() => {
+    localStorage.setItem("k2k_scope_selections", JSON.stringify([...selectedIds]));
+  }, [selectedIds]);
+
+  // ── Availability Picker State ─────────────────────────────
+  const [selectedSlots, setSelectedSlots] = useState(new Set());
+  const [submitted, setSubmitted] = useState(() =>
+    !!localStorage.getItem("k2k_availability_submitted")
+  );
+  const toggleSlot = (key) => setSelectedSlots(prev => {
+    const next = new Set(prev);
+    next.has(key) ? next.delete(key) : next.add(key);
+    return next;
+  });
+  const submitAvailability = () => {
+    localStorage.setItem("k2k_availability_submitted", new Date().toISOString());
+    localStorage.setItem("k2k_availability_slots", JSON.stringify([...selectedSlots]));
+    setSubmitted(true);
+  };
+
+  // Available call windows — next 14 days from today
+  const availableSlots = (() => {
+    const slots = [];
+    const today = new Date();
+    for (let i = 1; i <= 14; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const day = d.getDay();
+      const isWeekend = day === 0 || day === 6;
+      slots.push({
+        key: d.toISOString().split("T")[0],
+        label: d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }),
+        time: isWeekend ? "1:00 – 8:00 PM" : "After 6:00 PM",
+        isWeekend,
+      });
+    }
+    return slots;
+  })();
 
   const toggleService = (id) => {
     setSelectedIds(prev => {
@@ -1098,23 +1148,31 @@ export default function K2KPartnerPortalPage() {
               </div>
             </div>
 
-            {/* 4 Milestones */}
-            <div className={`${t.smallMeta} text-[#888] mb-3`}>Project Milestones · 4 Payments · 25% Each</div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {/* 4 Milestones — grayed until scope is confirmed */}
+            <div className="flex items-center gap-3 mb-3">
+              <div className={`${t.smallMeta} text-[#888]`}>Project Milestones · 4 Payments · 25% Each</div>
+              <span className="text-[9px] tracking-widest uppercase px-2 py-[2px] rounded-full bg-white/8 text-[#666] border border-white/10">
+                pending scope confirmation
+              </span>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 opacity-50">
               {milestones.map((m) => (
-                <div key={m.id} className="rounded-lg bg-[#0D1B2A] border border-white/10 p-4">
-                  <div className={`${t.smallMeta} text-[#E4B96A] mb-1`}>{m.id}</div>
-                  <div className={`${t.base} font-medium text-[#FAF7F2]`}>{m.name}</div>
-                  <div className="text-[11px] text-[#AAA] mt-1 mb-3 leading-4">{m.trigger}</div>
+                <div key={m.id} className="rounded-lg bg-white/5 border border-white/8 p-4">
+                  <div className={`${t.smallMeta} text-[#666] mb-1`}>{m.id}</div>
+                  <div className={`${t.base} font-medium text-[#AAA]`}>{m.name}</div>
+                  <div className="text-[11px] text-[#555] mt-1 mb-3 leading-4">{m.trigger}</div>
                   <div className="flex items-center justify-between">
-                    <span className="text-[13px] font-semibold text-[#E4B96A]">$5,187.50</span>
-                    <span className={`text-[9px] tracking-widest uppercase px-2 py-[2px] rounded-full ${milestoneStatusColor[m.status]}`}>
-                      {m.status}
+                    <span className="text-[13px] font-semibold text-[#666]">TBD</span>
+                    <span className="text-[9px] tracking-widest uppercase px-2 py-[2px] rounded-full bg-white/8 text-[#555]">
+                      pending
                     </span>
                   </div>
                 </div>
               ))}
             </div>
+            <p className="text-[11px] text-[#666] mt-3 leading-5">
+              Milestone amounts and payment dates are finalized once you've confirmed your scope and your MSA + SOW are executed.
+            </p>
           </div>
 
         </section>
@@ -1196,6 +1254,86 @@ export default function K2KPartnerPortalPage() {
               </p>
             </div>
           </div>
+
+        </section>
+
+
+        {/* ═══════════════════════════════════════════════════
+            SECTION — NEXT STEPS
+        ═══════════════════════════════════════════════════ */}
+        <section className={`rounded-2xl ${t.border} bg-[#0D1B2A] text-[#FAF7F2] p-6 md:p-8 transition-all duration-300`} style={tourStyle(null)}>
+
+          <div className={`${t.smallMeta} text-[#E4B96A] mb-2`}>What Happens Next</div>
+          <h2 className={`${t.h2} mb-2`} style={t.serif}>You've reviewed the scope. Here's how we move forward.</h2>
+          <p className={`${t.base} text-[#D6C9A8] mb-8 max-w-[600px]`}>
+            No commitment required yet — this is a conversation. Let us know when you're available and Axiom will reach out to confirm.
+          </p>
+
+          {/* 3-step progress */}
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
+            {[
+              { n: "01", label: "Axiom reviews your selections", body: "Your scope choices and any notes are sent to Axiom for review before the call.", done: false },
+              { n: "02", label: "We schedule a call to discuss", body: "We'll confirm a time from your availability and walk through the scope, pricing, and any questions.", done: false },
+              { n: "03", label: "MSA + SOW are generated", body: "Once aligned, Axiom drafts and sends your Master Services Agreement and Statement of Work.", done: false },
+            ].map((s) => (
+              <div key={s.n} className="rounded-xl bg-white/5 border border-white/10 p-5">
+                <div className={`${t.smallMeta} text-[#E4B96A] mb-2`}>Step {s.n}</div>
+                <div className="text-[14px] font-semibold mb-2 leading-5">{s.label}</div>
+                <p className="text-[12px] text-[#D6C9A8] leading-5">{s.body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Availability picker */}
+          {!submitted ? (
+            <>
+              <div className={`${t.smallMeta} text-[#E4B96A] mb-1`}>Select times that work for you</div>
+              <p className="text-[12px] text-[#888] mb-4">Select all that apply. Weekdays are available after 6 PM. Weekends are open 1–8 PM.</p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 mb-6">
+                {availableSlots.map((s) => {
+                  const active = selectedSlots.has(s.key);
+                  return (
+                    <button
+                      key={s.key}
+                      onClick={() => toggleSlot(s.key)}
+                      className={`rounded-lg p-3 text-left border transition-colors ${
+                        active
+                          ? "bg-[#C9973A] border-[#C9973A] text-white"
+                          : "bg-white/5 border-white/10 text-[#D6C9A8] hover:bg-white/10"
+                      }`}
+                    >
+                      <div className="text-[11px] font-semibold leading-4">{s.label}</div>
+                      <div className={`text-[9px] tracking-wide mt-1 ${active ? "text-white/80" : "text-[#666]"}`}>{s.time}</div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <button
+                onClick={submitAvailability}
+                disabled={selectedSlots.size === 0}
+                className={`px-6 py-3 rounded-xl text-[13px] tracking-widest uppercase font-semibold transition-colors ${
+                  selectedSlots.size > 0
+                    ? "bg-[#C9973A] text-white hover:bg-[#b8882f]"
+                    : "bg-white/8 text-[#555] cursor-not-allowed"
+                }`}
+              >
+                Submit my availability →
+              </button>
+              {selectedSlots.size > 0 && (
+                <p className="text-[11px] text-[#888] mt-2">{selectedSlots.size} time{selectedSlots.size > 1 ? "s" : ""} selected</p>
+              )}
+            </>
+          ) : (
+            <div className="rounded-xl bg-[#C9973A22] border border-[#C9973A44] p-6">
+              <div className={`${t.smallMeta} text-[#E4B96A] mb-2`}>Availability Received</div>
+              <p className={`${t.base} text-[#D6C9A8]`}>
+                Thank you, Tina — Axiom has your availability and will follow up to confirm a time. Keep an eye out for a message from{" "}
+                <span className="text-[#E4B96A]">hello@axiomexecutiveadvisory.com</span>.
+              </p>
+            </div>
+          )}
 
         </section>
 
