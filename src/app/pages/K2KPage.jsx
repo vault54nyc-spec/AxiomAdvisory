@@ -51,21 +51,36 @@ export default function K2KPartnerPortalPage() {
   ];
 
   const auditResolutions = [
-    { n:"01", severity:"CRITICAL", issue:"Free Wix subdomain",            fix:"Custom domain registration (k2kcollegeprepservices.com) + branded portal URL — custom domain setup is Phase 2, deliverable #1" },
-    { n:"02", severity:"CRITICAL", issue:"Lorem ipsum placeholder testimonials", fix:"Authenticated Testimonial Engine: post-session feedback form feeds verified, student-consented testimonials displayed on the public Success Stories page and portal outcomes showcase" },
-    { n:"03", severity:"HIGH",     issue:"Non-professional Gmail address", fix:"Google Workspace setup with branded domain email accounts (hello@, advisor@, info@k2kcollegeprepservices.com) — all client portal communications route through this system" },
-    { n:"04", severity:"HIGH",     issue:"No client portal or authenticated login", fix:"The entire portal build is the resolution to this issue — student-authenticated login portal with unique access codes per student, built per Blueprint 01" },
-    { n:"05", severity:"HIGH",     issue:"No progress or milestone tracking", fix:"Visual Milestone Tracker: 14-step HBCU journey roadmap, 5 phase markers, completion ring indicator, status badges per step, advisor-pushed notes — built per Blueprint 03" },
-    { n:"06", severity:"HIGH",     issue:"No alumni network delivery mechanism", fix:"Alumni Network Module: searchable directory (HBCU attended, graduation year, field, mentorship availability), mentorship request modal, My Mentors widget, Legacy Package access flag — built per Blueprint 06" },
-    { n:"07", severity:"MEDIUM",   issue:"About Us section truncated",    fix:"Dedicated About Page (public website): full founder story, professional bio, credentials and certifications, mission/values, team cards — no truncation possible in a proper multi-page architecture" },
-    { n:"08", severity:"MEDIUM",   issue:"Broken navigation link (Learn More → /pricing)", fix:"Multi-route architecture with proper URL mapping eliminates single-page navigation dependency entirely. Each section lives on its own dedicated route" },
-    { n:"09", severity:"MEDIUM",   issue:"Stock photography gallery with no K2K imagery", fix:"Authenticated portal media gallery (student success moments, HBCU tour photos); public Success Stories page features real student outcome cards — photography brief included in brand phase" },
-    { n:"10", severity:"MEDIUM",   issue:"No FAQ section",               fix:"Tiered FAQ system: public-facing FAQ page (pre-sale questions, process, refund policy, HBCU context) + client-only extended knowledge base gated inside the Resource Library" },
-    { n:"11", severity:"MEDIUM",   issue:"No blog or resource library",  fix:"Public Blog (CMS-powered, SEO-optimized, 3 seed articles from Axiom at launch) + Gated Resource Library (HBCU guides, scholarship databases, essay templates, financial aid checklists — filtered by package tier)" },
-    { n:"12", severity:"MEDIUM",   issue:"Basic Wix Bookings with no workflow", fix:"Integrated Scheduling & Session Center: calendar booking with automated email + SMS reminders, session archive with notes, Zoom/Meet link integration, past session history" },
-    { n:"13", severity:"MEDIUM",   issue:"Single-page non-scalable architecture", fix:"Full multi-route application architecture — each feature on its own route, fully extensible for new service lines, blog content, and portal modules" },
-    { n:"14", severity:"MEDIUM",   issue:"Virtual HBCU tours promised but undelivered", fix:"Portal-hosted Virtual HBCU Tour Library: video library organized by school, student notes and favorites saved to profile, live alumni Q&A session scheduler with Zoom/Meet integration" },
-    { n:"15", severity:"HIGH",     issue:"Zero verified social proof",   fix:"Student Outcomes Showcase: HBCU acceptance cards, scholarship amounts, stats banner ('X students helped, $Y in scholarships secured') with opt-in consent model; feeds from testimonial collection system" },
+    { n:"01", severity:"CRITICAL", issue:"Free Wix subdomain",
+      fix:"Phase 2 (Technical Infrastructure) will include custom domain registration for k2kcollegeprepservices.com with full DNS configuration, and setup of the portal subdomain (portal.k2kcollegeprepservices.com). This would eliminate the free Wix subdomain and establish a fully branded, professional web presence." },
+    { n:"02", severity:"CRITICAL", issue:"Lorem ipsum placeholder testimonials",
+      fix:"Phase 3 (Public Website) will include a dedicated Success Stories page with a rotating verified testimonial carousel. A post-session feedback form would collect student-consented testimonials for display on the public site and within the portal's outcomes showcase — no placeholder content at launch." },
+    { n:"03", severity:"HIGH",     issue:"Non-professional Gmail address",
+      fix:"Phase 2 (Technical Infrastructure) will include Google Workspace configuration with up to five branded email accounts — hello@, advisor@, info@, scholarship@, and support@k2kcollegeprepservices.com. All client-facing communications would route through this system." },
+    { n:"04", severity:"HIGH",     issue:"No client portal or authenticated login",
+      fix:"Phase 4 (Client Portal) is the direct response to this gap — an authenticated student experience built across 8 modules, beginning with Blueprint 01: split-screen login with brand imagery and email + unique access code authentication. Each student would receive a unique access code tied to their package." },
+    { n:"05", severity:"HIGH",     issue:"No progress or milestone tracking",
+      fix:"Phase 4 (Client Portal) will include the Milestone Tracker (Blueprint 03): a full-screen roadmap with a horizontal 5-phase progress bar, 14 individually tracked milestones with status badges (Completed / In Progress / Upcoming / Overdue), due dates, and advisor-pushed notes with reply functionality." },
+    { n:"06", severity:"HIGH",     issue:"No alumni network delivery mechanism",
+      fix:"Phase 4 (Client Portal) will include the Alumni Network Module (Blueprint 06), gated to Legacy Package holders: a searchable directory filterable by HBCU attended, graduation year, field, and mentorship availability — along with a mentorship request modal and My Mentors widget." },
+    { n:"07", severity:"MEDIUM",   issue:"About Us section truncated",
+      fix:"Phase 3 (Public Website) will include a dedicated About Page: full founder story, professional biography, credentials, certifications, mission and values statement, and team profile cards. A proper multi-page architecture eliminates content truncation by design." },
+    { n:"08", severity:"MEDIUM",   issue:"Broken navigation link (Learn More → /pricing)",
+      fix:"Phase 3 (Public Website) will deliver a full multi-route application with correct URL mapping. Each section — Services, Blog, FAQ, Success Stories, Contact — would live on its own dedicated route. Broken navigation links are not possible in this architecture." },
+    { n:"09", severity:"MEDIUM",   issue:"Stock photography gallery with no K2K imagery",
+      fix:"Phase 3 (Public Website) will include a Success Stories page with real student outcome cards. Phase 4 (Client Portal) will include a portal media gallery for student success moments and HBCU tour content. A photography brief is included in the Brand Identity phase to guide K2K's photo collection." },
+    { n:"10", severity:"MEDIUM",   issue:"No FAQ section",
+      fix:"Phase 3 (Public Website) will include an accordion-style FAQ page addressing pre-sale objections, the consultation process, package details, refund policy, HBCU overview questions, and financial aid process overview. An extended knowledge base would be gated inside the Resource Library in Phase 4." },
+    { n:"11", severity:"MEDIUM",   issue:"No blog or resource library",
+      fix:"Phase 3 (Public Website) will include a CMS-powered, SEO-optimized blog with category tagging and social sharing. Axiom would deliver three seed articles at launch. Phase 4 (Client Portal) will include a Gated Resource Library with HBCU guides, scholarship databases, essay templates, and financial aid checklists — filtered by package tier." },
+    { n:"12", severity:"MEDIUM",   issue:"Basic Wix Bookings with no workflow",
+      fix:"Phase 4 (Client Portal) will include an integrated Scheduling & Session Center: calendar booking with available time slot selection, automated email + SMS reminders at 24 hours and 1 hour before sessions, Zoom/Meet link integration per session, and a past sessions archive with advisor notes." },
+    { n:"13", severity:"MEDIUM",   issue:"Single-page non-scalable architecture",
+      fix:"The full engagement will deliver a multi-route application architecture where every feature — each public page, portal module, and admin view — lives on its own dedicated route. The platform would be fully extensible for new service lines, blog content, and additional portal modules beyond the initial scope." },
+    { n:"14", severity:"MEDIUM",   issue:"Virtual HBCU tours promised but undelivered",
+      fix:"Phase 4 (Client Portal) will include a Virtual HBCU Tour Library: a curated video library organized by school with a thumbnail grid, student-saved notes and favorites per profile, and a live alumni Q&A session scheduler with Zoom/Meet integration." },
+    { n:"15", severity:"HIGH",     issue:"Zero verified social proof",
+      fix:"Phase 3 (Public Website) will include a Student Outcomes Showcase: HBCU acceptance cards, scholarship amounts secured, and an opt-in stats banner. A Testimonial Engine would collect post-session, student-consented feedback to populate both the public Success Stories page and the portal's outcomes showcase." },
   ];
 
   const sitemapPublic = [
@@ -479,7 +494,7 @@ export default function K2KPartnerPortalPage() {
             What we found — and what we'd build to address it.
           </h2>
           <p className={`${t.base} text-[#D6C9A8] mb-6 max-w-[640px]`}>
-            Before our intake consultation, Axiom conducted a full review of your existing Wix presence against 15 credibility, functionality, and client-experience indicators. Each finding is mapped to a proposed resolution. These are recommendations — not commitments. Final scope is determined by your selections.
+            Before our intake consultation, Axiom conducted a full review of your existing Wix presence against 15 credibility, functionality, and client-experience indicators. Each finding below includes its severity rating and Axiom's proposed recommendation for how it would be addressed in the build. These are proposals — no work has been performed. Final scope is confirmed upon MSA and SOW execution.
           </p>
 
           {/* Consolidated accordion */}
