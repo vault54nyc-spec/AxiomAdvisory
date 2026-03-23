@@ -431,6 +431,22 @@ export default function K2KPartnerPortalPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [tourStep]);
 
+  // Active section gets a gold ring; all others get blurred while tour runs
+  const tourStyle = (id) => {
+    if (tourStep === null) return {};
+    const isActive = id !== null && tourSteps[tourStep].id === id;
+    if (isActive) return {
+      boxShadow: "0 0 0 3px #C9973A, 0 0 0 10px #C9973A44",
+      transition: "box-shadow 0.3s ease, filter 0.3s ease, opacity 0.3s ease",
+    };
+    return {
+      filter: "blur(3px)",
+      opacity: 0.25,
+      pointerEvents: "none",
+      transition: "filter 0.3s ease, opacity 0.3s ease",
+    };
+  };
+
   // ─────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-[#2A2A2A]" style={t.sans}>
@@ -445,10 +461,10 @@ export default function K2KPartnerPortalPage() {
                 Axiom Executive Advisory LLC · K2K College Prep Services
               </div>
               <h2 className="text-[26px] md:text-[32px] leading-[1.15] font-semibold text-[#0D1B2A] mb-3" style={t.serif}>
-                Welcome to your client portal.
+                Welcome, Tina.
               </h2>
               <p className="text-[14px] leading-6 text-[#555] mb-6">
-                Everything Axiom has prepared for you — your audit findings, the proposed platform, and your custom scope — is all here. Take a quick tour so you know exactly where to find everything.
+                Your portal is ready. Everything Axiom has prepared — the site audit, the proposed platform, and your custom scope — is right here. Take a quick tour so you know exactly where to find everything.
               </p>
               <div className="flex flex-col gap-3">
                 <button
@@ -531,7 +547,7 @@ export default function K2KPartnerPortalPage() {
         <section
           id="tour-header"
           className={`rounded-2xl ${t.border} bg-[#0D1B2A] text-[#FAF7F2] p-8 md:p-10 transition-shadow duration-300`}
-          style={tourStep !== null && tourSteps[tourStep].id === "tour-header" ? { boxShadow: "0 0 0 3px #C9973A, 0 0 0 8px #C9973A33" } : {}}
+          style={tourStyle("tour-header")}
         >
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
 
@@ -576,7 +592,7 @@ export default function K2KPartnerPortalPage() {
         {/* ═══════════════════════════════════════════════════
             SECTION 2 — PROJECT AT A GLANCE
         ═══════════════════════════════════════════════════ */}
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-5 transition-all duration-300 rounded-2xl" style={tourStyle(null)}>
           {stats.map((s, i) => (
             <div key={i} className={`rounded-xl ${t.border} bg-white p-5 text-center`}>
               <div className={`${t.smallMeta} text-[#C9973A] mb-2`}>{s.label}</div>
@@ -589,7 +605,7 @@ export default function K2KPartnerPortalPage() {
         {/* ═══════════════════════════════════════════════════
             SECTION 3 — CLIENT CONTEXT
         ═══════════════════════════════════════════════════ */}
-        <section className="grid md:grid-cols-2 gap-5">
+        <section className="grid md:grid-cols-2 gap-5 transition-all duration-300 rounded-2xl" style={tourStyle(null)}>
 
           <div className={`rounded-xl ${t.border} bg-[#0D1B2A] text-[#FAF7F2] p-6`}>
             <div className={`${t.smallMeta} text-[#E4B96A] mb-3`}>Client Profile</div>
@@ -629,7 +645,7 @@ export default function K2KPartnerPortalPage() {
         <section
           id="tour-audit"
           className={`rounded-2xl ${t.border} bg-[#0D1B2A] text-[#FAF7F2] p-6 md:p-8 transition-shadow duration-300`}
-          style={tourStep !== null && tourSteps[tourStep].id === "tour-audit" ? { boxShadow: "0 0 0 3px #C9973A, 0 0 0 8px #C9973A33" } : {}}
+          style={tourStyle("tour-audit")}
         >
 
           <div className={`${t.smallMeta} text-[#E4B96A] mb-2`}>Site Audit & Recommendations — k2kcollegeprepservices.com</div>
@@ -695,7 +711,7 @@ export default function K2KPartnerPortalPage() {
         <section
           id="tour-architecture"
           className={`rounded-2xl ${t.border} bg-[#F0E8D5] p-6 md:p-8 transition-shadow duration-300`}
-          style={tourStep !== null && tourSteps[tourStep].id === "tour-architecture" ? { boxShadow: "0 0 0 3px #C9973A, 0 0 0 8px #C9973A33" } : {}}
+          style={tourStyle("tour-architecture")}
         >
 
           <div className={`${t.smallMeta} text-[#7C3026] mb-2`}>Platform Architecture</div>
@@ -734,7 +750,7 @@ export default function K2KPartnerPortalPage() {
         <section
           id="tour-timeline"
           className="transition-shadow duration-300 rounded-2xl"
-          style={tourStep !== null && tourSteps[tourStep].id === "tour-timeline" ? { boxShadow: "0 0 0 3px #C9973A, 0 0 0 8px #C9973A33" } : {}}
+          style={tourStyle("tour-timeline")}
         >
 
           <div className={`${t.smallMeta} text-[#C9973A] mb-2`}>Implementation Timeline</div>
@@ -759,7 +775,7 @@ export default function K2KPartnerPortalPage() {
         {/* ═══════════════════════════════════════════════════
             SECTION 7 — FEATURE RANKINGS
         ═══════════════════════════════════════════════════ */}
-        <section className={`rounded-2xl ${t.border} bg-white p-6 md:p-8`}>
+        <section className={`rounded-2xl ${t.border} bg-white p-6 md:p-8 transition-all duration-300`} style={tourStyle(null)}>
 
           <div className={`${t.smallMeta} text-[#C9973A] mb-2`}>Scope Transparency</div>
           <h2 className={`${t.h2} text-[#0D1B2A] mb-2`} style={t.serif}>
@@ -829,7 +845,7 @@ export default function K2KPartnerPortalPage() {
         <section
           id="tour-budget"
           className={`rounded-2xl ${t.border} bg-white p-6 md:p-8 transition-shadow duration-300`}
-          style={tourStep !== null && tourSteps[tourStep].id === "tour-budget" ? { boxShadow: "0 0 0 3px #C9973A, 0 0 0 8px #C9973A33" } : {}}
+          style={tourStyle("tour-budget")}
         >
 
           <div className={`${t.smallMeta} text-[#C9973A] mb-2`}>Step 3 of 3 — Your Decision</div>
@@ -1107,7 +1123,7 @@ export default function K2KPartnerPortalPage() {
         {/* ═══════════════════════════════════════════════════
             SECTION 8B — THIRD-PARTY RECURRING EXPENSES
         ═══════════════════════════════════════════════════ */}
-        <section className={`rounded-2xl ${t.border} bg-[#F0E8D5] p-6 md:p-8`}>
+        <section className={`rounded-2xl ${t.border} bg-[#F0E8D5] p-6 md:p-8 transition-all duration-300`} style={tourStyle(null)}>
 
           <div className={`${t.smallMeta} text-[#7C3026] mb-2`}>Third-Party Recurring Expenses — Client's Responsibility</div>
           <h2 className={`${t.h2} text-[#0D1B2A] mb-2`} style={t.serif}>
@@ -1187,7 +1203,7 @@ export default function K2KPartnerPortalPage() {
         {/* ═══════════════════════════════════════════════════
             SECTION 9 — AXIOM GAP RECOMMENDATIONS
         ═══════════════════════════════════════════════════ */}
-        <section>
+        <section className="transition-all duration-300 rounded-2xl" style={tourStyle(null)}>
 
           <div className={`${t.smallMeta} text-[#C9973A] mb-2`}>
             Axiom Gap Analysis — 3 Strategic Blind Spots
@@ -1215,7 +1231,7 @@ export default function K2KPartnerPortalPage() {
         {/* ═══════════════════════════════════════════════════
             SECTION 10 — AXIOM ADVISORY FOOTER CARD
         ═══════════════════════════════════════════════════ */}
-        <section className={`rounded-2xl ${t.border} bg-[#0D1B2A] text-[#FAF7F2] p-6 md:p-8`}>
+        <section className={`rounded-2xl ${t.border} bg-[#0D1B2A] text-[#FAF7F2] p-6 md:p-8 transition-all duration-300`} style={tourStyle(null)}>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
             <div>
